@@ -44,6 +44,12 @@ public class InputHandler {
 	        		state=o.getState();
 	        		oo.setOutput(output);
 		            oo.setState(state);
+		     }else if(state==STUDENTLOGIN){
+		        	o=outputHandler.studentLogin(input);
+	        		output=o.getOutput();
+	        		state=o.getState();
+	        		oo.setOutput(output);
+		            oo.setState(state);
 		     }
 		return oo;
 	}

@@ -1,7 +1,7 @@
 # Project specific excludes
 
 bin/
-
+log/
 
 # eclipse project file
 .settings/

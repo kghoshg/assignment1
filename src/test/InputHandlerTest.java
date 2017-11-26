@@ -17,6 +17,7 @@ public class InputHandlerTest {
 	public static final int FINISHWAITING=1;
 	public static final int CLERKLOGIN=2;
 	public static final int STUDENTLOGIN=3;
+	
 	InputHandler inputHandler;
 	ServerOutput serverOutput;
 	Output output;
