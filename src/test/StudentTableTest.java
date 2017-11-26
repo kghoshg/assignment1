@@ -18,7 +18,9 @@ public class StudentTableTest {
 	public void testCheckStudent() {
 		result=StudentTable.getInstance().checkStudent("James@carleton.ca", "James");
 		assertTrue("Sdtudent and password matched", result == 0);
+		result=StudentTable.getInstance().checkStudent("James@carleton.ca", "yyyy");
 		assertTrue("password not matched", result == 1);
+		result=StudentTable.getInstance().checkStudent("k@g.ca", "xxxx");
 		assertTrue("student does not exist", result == 2);
 	}
 

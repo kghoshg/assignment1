@@ -32,7 +32,7 @@ public class StudentTable {
 
 	public int checkStudent(String string, String string2) {
 		int result=-1;
-
+		
 		return result;
 	}
 	
