@@ -7,6 +7,7 @@ public class InputHandler {
 	
 	public static final int WAITING = 0;
 	public static final int FINISHWAITING=1;
+	public static final int CLERKLOGIN=2;
 
 	public ServerOutput processInput(String input, int state) {
 		 String output = "";
@@ -17,6 +18,13 @@ public class InputHandler {
 	            state = FINISHWAITING;
 	            oo.setOutput(output);
 	            oo.setState(state);
+	         }else if (state == FINISHWAITING) {
+		            if (input.equalsIgnoreCase("clerk")) {
+		            	output="Please Input The Password:";
+		            	state=CLERKLOGIN;
+		                oo.setOutput(output);
+			            oo.setState(state);
+		            }
 	         }
 		return oo;
 	}
