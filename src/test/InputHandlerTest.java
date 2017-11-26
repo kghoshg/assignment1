@@ -16,6 +16,7 @@ public class InputHandlerTest {
 	public static final int WAITING = 0;
 	public static final int FINISHWAITING=1;
 	public static final int CLERKLOGIN=2;
+	public static final int STUDENTLOGIN=3;
 	InputHandler inputHandler;
 	ServerOutput serverOutput;
 	Output output;
@@ -51,6 +52,19 @@ public class InputHandlerTest {
 		//with correct password
 		serverOutput = inputHandler.processInput(Config.CLERK_PASSWORD, CLERKLOGIN);
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
+	}
+	
+	@Test
+	public void testStudentLogin() {
+		//with wrong password
+		serverOutput = inputHandler.processInput("James@carleton.ca,xxxx", STUDENTLOGIN);
+		assertTrue(serverOutput.getOutput().contains("Wrong Password!Please Input Username and Password:'username,password'"));
+		//when does not exist
+		serverOutput = inputHandler.processInput("a@b,xxxx", STUDENTLOGIN);
+		assertTrue(serverOutput.getOutput().contains("The User Does Not Exist!Please Input Username and Password:'username,password'"));
+		//with correct password
+		serverOutput = inputHandler.processInput("James@carleton.ca,James", STUDENTLOGIN);
+		assertTrue(serverOutput.getOutput().contains("Please select from the menu.Menu:"));
 	}
 
 }
