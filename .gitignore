@@ -1,0 +1,9 @@
+# Project specific excludes
+
+bin/
+
+
+# eclipse project file
+.settings/
+.classpath
+.project
