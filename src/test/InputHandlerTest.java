@@ -33,8 +33,12 @@ public class InputHandlerTest {
 	
 	@Test
 	public void testFinisihingState(){
+		//when user is clerk
 		serverOutput = inputHandler.processInput("clerk", FINISHWAITING);
 		assertTrue(serverOutput.getOutput().equalsIgnoreCase("Please Input The Password:"));
+		//when user is student
+		serverOutput = inputHandler.processInput("student", FINISHWAITING);
+		assertTrue(serverOutput.getOutput().equalsIgnoreCase("Please Input Username and Password:'username,password'"));
 	}
 
 }
