@@ -32,7 +32,27 @@ public class StudentTable {
 
 	public int checkStudent(String string, String string2) {
 		int result=-1;
-		
+		int flag=0;
+		int index=0;
+		for(int i=0;i<studentList.size();i++){
+			if(studentList.get(i).getUsername().equalsIgnoreCase(string)){
+				flag=flag+1;
+				index=i;
+			}else{
+				flag=flag+0;
+			}
+		}
+		boolean password=studentList.get(index).getPassword().equalsIgnoreCase(string2);
+		if(flag!=0 && password){
+			result=0;
+			logger.info(String.format("Operation:the student and password matched:"));
+		}else if(flag==0){
+			result=2;
+			logger.info(String.format("Operation:The student does not exist"));
+		}else if(password==false){
+			result=1;
+			logger.info(String.format("Operation:the Password is wrong"));
+		}
 		return result;
 	}
 	

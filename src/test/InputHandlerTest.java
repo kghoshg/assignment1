@@ -62,7 +62,7 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("Wrong Password!Please Input Username and Password:'username,password'"));
 		//when does not exist
 		serverOutput = inputHandler.processInput("a@b,xxxx", STUDENTLOGIN);
-		assertTrue(serverOutput.getOutput().contains("The User Does Not Exist!Please Input Username and Password:'username,password'"));
+		assertTrue(serverOutput.getOutput().contains("The User Does Not Exist!"));
 		//with correct password
 		serverOutput = inputHandler.processInput("James@carleton.ca,James", STUDENTLOGIN);
 		assertTrue(serverOutput.getOutput().contains("Please select from the menu.Menu:"));
