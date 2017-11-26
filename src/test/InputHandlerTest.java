@@ -13,6 +13,7 @@ import server.logic.handler.model.ServerOutput;
 public class InputHandlerTest {
 	
 	public static final int WAITING = 0;
+	public static final int FINISHWAITING=1;
 	InputHandler inputHandler;
 	ServerOutput serverOutput;
 	Output output;
@@ -28,6 +29,12 @@ public class InputHandlerTest {
 	public void testWaitingState() {
 		serverOutput = inputHandler.processInput("", WAITING);
 		assertTrue(serverOutput.getOutput().equalsIgnoreCase("Who Are you?Clerk or Student?"));
+	}
+	
+	@Test
+	public void testFinisihingState(){
+		serverOutput = inputHandler.processInput("clerk", FINISHWAITING);
+		assertTrue(serverOutput.getOutput().equalsIgnoreCase("Please Input The Password:"));
 	}
 
 }
