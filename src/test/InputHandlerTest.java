@@ -21,6 +21,7 @@ public class InputHandlerTest {
 	public static final int STUDENTLOGIN=5;
 	public static final int CREATESTUDENT=6;
 	public static final int DELETESTUDENT=9;
+	public static final int LISTSTUDENTS=14;
 	
 	InputHandler inputHandler;
 	ServerOutput serverOutput;
@@ -93,6 +94,9 @@ public class InputHandlerTest {
 		//testing log-out while deleting a student
 		serverOutput = inputHandler.processInput("log out", DELETESTUDENT);
 		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
+		//testing logout option while list student
+		serverOutput = inputHandler.processInput("log out", LISTSTUDENTS);
+		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
 	}
 	
 	@Test
@@ -102,6 +106,9 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 		//test returning to main menu while deleting student
 		serverOutput = inputHandler.processInput("main menu", DELETESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
+		//testing main menu option while list students
+		serverOutput = inputHandler.processInput("main menu", LISTSTUDENTS);
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 	}
 	
@@ -116,6 +123,19 @@ public class InputHandlerTest {
 		// testing 'deleting student' using menu and when student does exist
 		serverOutput = inputHandler.processInput("x@y.ca", DELETESTUDENT);
 		assertTrue(serverOutput.getOutput().contains("The Student Does Not Exist!"));
+	}
+	
+	@Test
+	public void testListStudents(){
+		//list student menu test
+		serverOutput = inputHandler.processInput("list student", CLERK);
+		assertTrue(serverOutput.getOutput().contains("Do you want to see the list of all students? (yes/no)"));
+		// testing 'list student' using menu when the clerk wants to see it.
+		serverOutput = inputHandler.processInput("yes", DELETESTUDENT);
+		assertTrue(serverOutput.getOutput().length() > 5);
+		// testing 'list student' using menu when the clerk wants to see it.
+		serverOutput = inputHandler.processInput("no", DELETESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("Alright, have an nice day!"));
 	}
 
 }

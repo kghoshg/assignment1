@@ -14,6 +14,7 @@ public class OutputHandler {
 	public static final int STUDENTLOGIN=5;
 	public static final int CREATESTUDENT=6;
 	public static final int DELETESTUDENT=9;
+	public static final int LISTSTUDENTS=14;
 	
 	public Output clerkLogin(String input) {
 		Output output=new Output("",0);
