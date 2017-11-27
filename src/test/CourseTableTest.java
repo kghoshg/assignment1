@@ -39,7 +39,7 @@ public class CourseTableTest {
 		//when the course exists
 		assertTrue("the course was successfully deleted or destroyed", CourseTable.getInstance().destroyCourse("CO5008").equals(true));
 		//when the course does not exist
-		assertTrue("the course does not exist, so it could not be deleted", CourseTable.getInstance().destroyCourse("CO5008").equals(false));
+		assertTrue("the course does not exist, so it could not be deleted", CourseTable.getInstance().destroyCourse("COxxxx").equals(false));
 	}
 
 

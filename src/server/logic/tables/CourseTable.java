@@ -70,6 +70,13 @@ public class CourseTable {
     
     public Object destroyCourse(String courseCode){
     	
-    	return null;	
+    	boolean result = false;
+		for(int j=0;j<courseList.size();j++){
+			if(courseList.get(j).getCourseCode().equalsIgnoreCase(courseCode)){
+				result = true;
+				logger.info(String.format("Operation:Delete Course;Course Info:[%s];State:successfully deleted.", courseCode));
+			}
+		}
+		return result;
     }
 }
