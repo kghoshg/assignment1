@@ -154,7 +154,7 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("A new course,CO5555", CREATECOURSE);
 		assertTrue(serverOutput.getOutput().contains("Success!"));
 		// testing 'create course' using menu and when course does exist
-		serverOutput = inputHandler.processInput("Object-Oriented Software Development,CO5104", CREATESTUDENT);
+		serverOutput = inputHandler.processInput("Object-Oriented Software Development,CO5104", CREATECOURSE);
 		assertTrue(serverOutput.getOutput().contains("The Course Already Exists!"));
 	}
 

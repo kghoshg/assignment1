@@ -1,6 +1,7 @@
 package server.logic.handler;
 
 import server.logic.handler.model.Output;
+import server.logic.tables.CourseTable;
 import server.logic.tables.StudentTable;
 import utilities.Config;
 
@@ -13,6 +14,7 @@ public class OutputHandler {
 	public static final int STUDENT = 4;
 	public static final int STUDENTLOGIN=5;
 	public static final int CREATESTUDENT=6;
+	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
 	public static final int LISTSTUDENTS=14;
 	
@@ -110,6 +112,26 @@ public class OutputHandler {
             	output.setState(LISTSTUDENTS);
         	}else{
         		output.setOutput(StudentTable.getInstance().listStudents());
+        	}
+        	output.setState(CLERK);
+        }
+		return output;
+	}
+	
+	public Output createCourse(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+        Object result="";
+        if(strArray.length < 2 ){
+        	output.setOutput("Your input should in this format:'course name, course code', and course code must be 6 digits: first 2 are the dept code; last 4 are the course code, first digit is NOT zero");
+        	output.setState(CREATECOURSE);
+        }else{
+        	result=CourseTable.getInstance().createCourse(strArray[0], strArray[1]);
+        	if(result.equals(true)){
+        		output.setOutput("Success!");
+        	}else{
+        		output.setOutput("The Course Already Exists!");
         	}
         	output.setState(CLERK);
         }
