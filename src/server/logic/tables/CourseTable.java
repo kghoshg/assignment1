@@ -67,4 +67,9 @@ public class CourseTable {
 		}
 		return output;
 	}
+    
+    public Object destroyCourse(String courseCode){
+    	
+    	return null;	
+    }
 }
