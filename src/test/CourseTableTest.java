@@ -28,6 +28,11 @@ public class CourseTableTest {
 		course=CourseTable.getInstance().createCourse("New course", "CO9999");
 		assertTrue("Course has successfully been created!", course.equals(true));
 	}
+	
+	@Test
+	public void testListCourse(){
+		fail("Not yet implemented");
+	}
 
 
 }

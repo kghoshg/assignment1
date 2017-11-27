@@ -59,4 +59,9 @@ public class CourseTable {
 		}
 		return result;	
 	}
+    
+    public String listCourses(){
+		
+		return "";
+	}
 }
