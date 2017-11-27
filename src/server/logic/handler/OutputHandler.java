@@ -96,5 +96,24 @@ public class OutputHandler {
         }
 		return output;
 	}
+	
+	public Output listStudents(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+		if(strArray.length < 1){
+        	output.setOutput("Your input should be in this format:'yes/no'");
+        	output.setState(LISTSTUDENTS);
+        }else{
+        	if(strArray[0].contains("no") || strArray[0].contains("No")){
+        		output.setOutput("Alright, have an nice day!");
+            	output.setState(LISTSTUDENTS);
+        	}else{
+        		output.setOutput(StudentTable.getInstance().listStudents());
+        	}
+        	output.setState(CLERK);
+        }
+		return output;
+	}
 
 }

@@ -66,6 +66,11 @@ public class InputHandler {
             	state=DELETESTUDENT;
             	oo.setOutput(output);
 	            oo.setState(state);
+            }else if (input.equalsIgnoreCase("list students")) {
+            	output = "Do you want to see the list of all students? (yes/no)";
+            	state=LISTSTUDENTS;
+            	oo.setOutput(output);
+	            oo.setState(state);
             }
 		}else if(state==CREATESTUDENT){
 			if(input.equalsIgnoreCase("log out")){
@@ -103,7 +108,25 @@ public class InputHandler {
         		oo.setOutput(output);
 	            oo.setState(state);
         	}
-		}
+		}else if(state==LISTSTUDENTS){
+        	if(input.equalsIgnoreCase("log out")){
+            	output = "Successfully Log Out!";
+                state = WAITING;
+                oo.setOutput(output);
+	            oo.setState(state);
+        	}else if(input.equalsIgnoreCase("main menu")){
+        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+                state = CLERK;
+                oo.setOutput(output);
+	            oo.setState(state);
+        	}else{
+        		o=outputHandler.listStudents(input);
+        		output=o.getOutput();
+        		state=o.getState();
+        		oo.setOutput(output);
+	            oo.setState(state);
+        	}
+        }
 		return oo;
 	}
 }

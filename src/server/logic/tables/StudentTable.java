@@ -102,4 +102,12 @@ public class StudentTable {
 		return result;
 	}
 	
+	public String listStudents(){
+		String output = "\n";
+		for (Student student: studentList) {
+			output += student.getUsername() + " (" + student.getStudentNumber()+ ")\n\n";
+		}
+		return output;
+	}
+	
 }
