@@ -23,21 +23,37 @@ public class UniversityTable {
     };
     
     public List<University> getRegInfo(){
-    	return null;
+    	return registerList;
     }
     
     public int findCoursesTakenByAStudent(int studentNo){
-    	return 0;
+    	int counter = 0 ;
+    	for(int i=0;i<registerList.size();i++){
+			if(studentNo == registerList.get(i).getStudentNumber()){
+				counter++;
+			}			
+		}
+    	return counter;
     }
     
-    public int totalStudentsOfACourse(String courseCode){
-    	
-    	return 0;
+    public int totalStudentsOfACourse(String courseCode){    	
+    	int counter = 0 ;
+    	for(int i=0;i<registerList.size();i++){
+			if(courseCode == registerList.get(i).getCourseCode()){
+				counter++;
+			}			
+		}
+    	return counter;
     }
     
     public boolean alreadyRegistered(String courseCode, int studentNo){
-    	
-    	return false;
+    	boolean flag = false;
+    	for(int i=0;i<registerList.size();i++){
+			if(courseCode.equalsIgnoreCase(registerList.get(i).getCourseCode()) && (studentNo == registerList.get(i).getStudentNumber())){
+				flag = true;
+			}			
+		}
+    	return flag;
     }
     
     public static final UniversityTable getInstance() {
