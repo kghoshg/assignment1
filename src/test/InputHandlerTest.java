@@ -15,8 +15,11 @@ public class InputHandlerTest {
 	
 	public static final int WAITING = 0;
 	public static final int FINISHWAITING=1;
-	public static final int CLERKLOGIN=2;
-	public static final int STUDENTLOGIN=3;
+    public static final int CLERK = 2;
+	public static final int CLERKLOGIN=3;
+	public static final int STUDENT = 4;
+	public static final int STUDENTLOGIN=5;
+	public static final int CREATESTUDENT=6;
 	
 	InputHandler inputHandler;
 	ServerOutput serverOutput;
@@ -71,7 +74,7 @@ public class InputHandlerTest {
 	@Test
 	public void testCreateStudent(){
 		//create student menu test
-		serverOutput = inputHandler.processInput("a@b.ca,xxxx", STUDENTLOGIN);
+		serverOutput = inputHandler.processInput("create student", CLERK);
 		assertTrue(serverOutput.getOutput().contains("Please Input User Info:'username,password,FT or PT'"));
 	}
 

@@ -53,6 +53,13 @@ public class InputHandler {
 	        		state=o.getState();
 	        		oo.setOutput(output);
 		            oo.setState(state);
+		     }else if (state==CLERK){
+		        	if (input.equalsIgnoreCase("create student")) {
+		            	output = "Please Input User Info:'username,password,FT or PT'";
+		            	state=CREATESTUDENT;
+		            	oo.setOutput(output);
+			            oo.setState(state);
+		            }
 		     }
 		return oo;
 	}
