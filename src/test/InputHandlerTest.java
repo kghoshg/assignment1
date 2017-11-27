@@ -67,5 +67,12 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("James@carleton.ca,James", STUDENTLOGIN);
 		assertTrue(serverOutput.getOutput().contains("Please select from the menu.Menu:"));
 	}
+	
+	@Test
+	public void testCreateStudent(){
+		//create student menu test
+		serverOutput = inputHandler.processInput("a@b.ca,xxxx", STUDENTLOGIN);
+		assertTrue(serverOutput.getOutput().contains("Please Input User Info:'username,password,FT or PT'"));
+	}
 
 }
