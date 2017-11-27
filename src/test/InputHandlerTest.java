@@ -111,10 +111,10 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("delete student", CLERK);
 		assertTrue(serverOutput.getOutput().contains("Please Input student Info:'student email'"));
 		// testing 'deleting student' using menu and when student does not exist
-		serverOutput = inputHandler.processInput("James@carleton.ca", DELETESTUDENT);
-		//assertTrue(serverOutput.getOutput().contains("Success!"));
+		serverOutput = inputHandler.processInput("Kay@carleton.ca", DELETESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("The student successfully deleted!"));
 		// testing 'deleting student' using menu and when student does exist
-		serverOutput = inputHandler.processInput("a@b.ca", DELETESTUDENT);
+		serverOutput = inputHandler.processInput("x@y.ca", DELETESTUDENT);
 		assertTrue(serverOutput.getOutput().contains("The Student Does Not Exist!"));
 	}
 

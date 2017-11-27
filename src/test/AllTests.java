@@ -5,7 +5,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ InputHandlerTest.class })
+@SuiteClasses({ InputHandlerTest.class, StudentTableTest.class })
 public class AllTests {
 
 }
