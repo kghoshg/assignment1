@@ -77,11 +77,11 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("create student", CLERK);
 		assertTrue(serverOutput.getOutput().contains("Please Input User Info:'username,password,FT or PT'"));
 		// testing 'create student' using menu and when student does not exist
-		serverOutput = inputHandler.processInput("a@b.ca,xxxx", CREATESTUDENT);
-		assertTrue(serverOutput.getOutput().contains("the student is successfully created"));
+		serverOutput = inputHandler.processInput("a@b.ca,xxxx,FT", CREATESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("Success!"));
 		// testing 'create student' using menu and when student does exist
-		serverOutput = inputHandler.processInput("James@carleton.ca,James", CREATESTUDENT);
-		assertTrue(serverOutput.getOutput().contains("the student exists"));
+		serverOutput = inputHandler.processInput("James@carleton.ca,James,FT", CREATESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("The User Already Exists"));
 	}
 	
 	@Test

@@ -52,7 +52,23 @@ public class OutputHandler {
 	}
 	
 	public Output createStudent(String input) {
-		Output output=new Output("",0);		
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+        boolean email=strArray[0].contains("@");
+        Object result="";
+        if(strArray.length!=3 || email!=true){
+        	output.setOutput("Your input should in this format:'username,password,FT or PT'");
+        	output.setState(CREATESTUDENT);
+        }else{
+        	result=StudentTable.getInstance().createStudent(strArray[0], strArray[1], strArray[2]);
+        	if(result.equals(true)){
+        		output.setOutput("Success!");
+        	}else{
+        		output.setOutput("The User Already Exists!");
+        	}
+        	output.setState(CLERK);
+        }
 		return output;
 	}
 
