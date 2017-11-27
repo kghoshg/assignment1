@@ -39,4 +39,9 @@ public class CourseTable {
 		
 		return found;
     }
+    
+    public Object createCourse(String name, String code) {		
+
+		return null;	
+	}
 }

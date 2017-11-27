@@ -20,7 +20,13 @@ public class CourseTableTest {
 	
 	@Test
 	public void testCreateCourse() {
-		fail("Not yet implemented");
+		Object course;
+		//course already exist!
+		course=CourseTable.getInstance().createCourse("Object-Oriented Software Development", "CO5104");
+		assertTrue("Course has already existed", course.equals(false));
+		//course successfully created
+		course=CourseTable.getInstance().createCourse("New course", "CO9999");
+		assertTrue("Course has successfully been created!", course.equals(true));
 	}
 
 
