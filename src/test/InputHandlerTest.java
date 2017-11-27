@@ -104,5 +104,18 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("main menu", DELETESTUDENT);
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 	}
+	
+	@Test
+	public void testDeleteStudent(){
+		//deleting student menu test
+		serverOutput = inputHandler.processInput("delete student", CLERK);
+		assertTrue(serverOutput.getOutput().contains("Your input should in this format:'student email'"));
+		// testing 'deleting student' using menu and when student does not exist
+		serverOutput = inputHandler.processInput("James@carleton.ca", DELETESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("Success!"));
+		// testing 'deleting student' using menu and when student does exist
+		serverOutput = inputHandler.processInput("a@b.ca", DELETESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("The User Already Exists"));
+	}
 
 }
