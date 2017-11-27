@@ -56,4 +56,8 @@ public class StudentTable {
 		return result;
 	}
 	
+	public Object createStudent(String string, String string2, String status) {	
+		return null;
+	}
+	
 }

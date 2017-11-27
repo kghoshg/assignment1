@@ -23,5 +23,10 @@ public class StudentTableTest {
 		result=StudentTable.getInstance().checkStudent("k@g.ca", "xxxx");
 		assertTrue("student does not exist", result == 2);
 	}
+	
+	@Test
+	public void testCreateStudent(){
+		fail("Not yet implemented");
+	}
 
 }
