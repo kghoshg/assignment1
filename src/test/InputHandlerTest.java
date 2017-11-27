@@ -76,6 +76,9 @@ public class InputHandlerTest {
 		//create student menu test
 		serverOutput = inputHandler.processInput("create student", CLERK);
 		assertTrue(serverOutput.getOutput().contains("Please Input User Info:'username,password,FT or PT'"));
+		// testing 'create student' using menu
+		serverOutput = inputHandler.processInput("a@b.ca,xxxx", CREATESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("the student is successfully created"));
 	}
 
 }
