@@ -71,7 +71,13 @@ public class InputHandler {
 				state = CLERK;
 				oo.setOutput(output);
 				oo.setState(state);
-			}
+			}else{
+        		o=outputHandler.createStudent(input);
+        		output=o.getOutput();
+        		state=o.getState();
+        		oo.setOutput(output);
+	            oo.setState(state);
+        	}
 		}
 		return oo;
 	}

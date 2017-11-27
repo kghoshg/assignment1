@@ -50,5 +50,10 @@ public class OutputHandler {
         }
 		return output;
 	}
+	
+	public Output createStudent(String input) {
+		Output output=new Output("",0);		
+		return output;
+	}
 
 }
