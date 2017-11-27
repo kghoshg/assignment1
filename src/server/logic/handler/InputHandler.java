@@ -12,6 +12,7 @@ public class InputHandler {
 	public static final int STUDENT = 4;
 	public static final int STUDENTLOGIN=5;
 	public static final int CREATESTUDENT=6;
+	public static final int DELETESTUDENT=9;
 
 	OutputHandler outputHandler=new OutputHandler();
 
@@ -76,6 +77,18 @@ public class InputHandler {
         		output=o.getOutput();
         		state=o.getState();
         		oo.setOutput(output);
+	            oo.setState(state);
+        	}
+		}else if(state==DELETESTUDENT){
+        	if(input.equalsIgnoreCase("log out")){
+            	output = "Successfully Log Out!";
+                state = WAITING;
+                oo.setOutput(output);
+	            oo.setState(state);
+        	}else if(input.equalsIgnoreCase("main menu")){
+        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+                state = CLERK;
+                oo.setOutput(output);
 	            oo.setState(state);
         	}
 		}
