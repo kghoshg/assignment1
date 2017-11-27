@@ -60,7 +60,12 @@ public class InputHandler {
 				state=CREATESTUDENT;
 				oo.setOutput(output);
 				oo.setState(state);
-			}
+			}else if (input.equalsIgnoreCase("delete student")) {
+            	output = "Please Input student Info:'student email'";
+            	state=DELETESTUDENT;
+            	oo.setOutput(output);
+	            oo.setState(state);
+            }
 		}else if(state==CREATESTUDENT){
 			if(input.equalsIgnoreCase("log out")){
 				output = "Successfully Log Out!";
@@ -89,6 +94,12 @@ public class InputHandler {
         		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
                 state = CLERK;
                 oo.setOutput(output);
+	            oo.setState(state);
+        	}else{
+        		o=outputHandler.deleteStudent(input);
+        		output=o.getOutput();
+        		state=o.getState();
+        		oo.setOutput(output);
 	            oo.setState(state);
         	}
 		}

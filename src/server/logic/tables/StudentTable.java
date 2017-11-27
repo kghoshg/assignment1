@@ -79,5 +79,27 @@ public class StudentTable {
 		}
 		return result;	
 	}
+	//find student by their email
+	public int lookup(String string) {
+		int userid=-1;
+		for(int i=0;i<studentList.size();i++){
+			if(studentList.get(i).getUsername().equalsIgnoreCase(string)){
+				userid=i;
+			}
+		}
+		return userid;
+	}
+	
+	public boolean delete(int i) {
+		
+		boolean result = false;
+		for(int j=0;j<studentList.size();j++){
+			if(studentList.get(j).getUserid()==i){
+				result = true;
+				logger.info(String.format("Operation:Delete Student;Student Info:[%s,%s];State:successfully deleted.", "N/A","N/A"));
+			}
+		}
+		return result;
+	}
 	
 }

@@ -72,5 +72,28 @@ public class OutputHandler {
         }
 		return output;
 	}
+	
+	public Output deleteStudent(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+        int userid=StudentTable.getInstance().lookup(strArray[0]);
+        boolean email=strArray[0].contains("@");
+        boolean result;
+        if(strArray.length!=1 || email!=true){
+        	output.setOutput("Your input should in this format:'student email'");
+        	output.setState(DELETESTUDENT);
+        }else if(userid==-1){
+        	output.setOutput("The Student Does Not Exist!");
+        	output.setState(DELETESTUDENT);
+        }else{
+        	result=StudentTable.getInstance().delete(userid);
+        	if(result){
+        		output.setOutput("The student successfully deleted!");
+        	}
+        	output.setState(CLERK);
+        }
+		return output;
+	}
 
 }
