@@ -34,14 +34,29 @@ public class CourseTable {
 		for(int i=0;i<courseList.size();i++){
 			if(courseList.get(i).getCourseCode().equalsIgnoreCase(courseCode)){
 				found=true;
+				logger.info(String.format("Operation:Finding Course;Course Info:[%s,%s];State:Success", courseList.get(i).getCourseCode(),courseList.get(i).getTitle()));
 			}
+		}
+		
+		if(!found){
+			logger.info(String.format("Operation:There is no course with :[%s]", courseCode));
 		}
 		
 		return found;
     }
     
     public Object createCourse(String name, String code) {		
-
-		return null;	
+    	boolean result=true;
+    	boolean flag=false;
+		flag = findByCourseByCode(code);
+		if(!flag){
+			Course newCourse = new Course(courseList.size(), name, code);
+			result=courseList.add(newCourse);
+			logger.info(String.format("Operation:Create New Course;Course Info:[%s,%s];State:Success", name,code));
+		}else{
+			result=false;
+			logger.info(String.format("Operation:Create New Course;Course Info:[%s,%s];State:Fail;Reason:The Course already existed.", name,code));
+		}
+		return result;	
 	}
 }
