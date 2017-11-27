@@ -20,6 +20,7 @@ public class InputHandlerTest {
 	public static final int STUDENT = 4;
 	public static final int STUDENTLOGIN=5;
 	public static final int CREATESTUDENT=6;
+	public static final int DELETESTUDENT=9;
 	
 	InputHandler inputHandler;
 	ServerOutput serverOutput;
@@ -89,12 +90,18 @@ public class InputHandlerTest {
 		//test login-out while creating student
 		serverOutput = inputHandler.processInput("log out", CREATESTUDENT);
 		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
+		//testing log-out while deleting a student
+		serverOutput = inputHandler.processInput("log out", DELETESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
 	}
 	
 	@Test
 	public void testReturningMainMenu(){
 		//test returning to main menu while creating student
 		serverOutput = inputHandler.processInput("main menu", CREATESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
+		//test returning to main menu while deleting student
+		serverOutput = inputHandler.processInput("main menu", DELETESTUDENT);
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 	}
 
