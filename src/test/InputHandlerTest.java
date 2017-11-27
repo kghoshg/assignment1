@@ -137,5 +137,10 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("no", LISTSTUDENTS);
 		assertTrue(serverOutput.getOutput().contains("Alright, have an nice day!"));
 	}
+	
+	@Test
+	public void testCreateCourse(){
+		fail("Not yet implemented");
+	}
 
 }
