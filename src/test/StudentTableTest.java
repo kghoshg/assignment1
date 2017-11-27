@@ -26,7 +26,13 @@ public class StudentTableTest {
 	
 	@Test
 	public void testCreateStudent(){
-		fail("Not yet implemented");
+		Object student;
+		//student already exist!
+		student=StudentTable.getInstance().createStudent("James@carleton.ca", "James", "FT");
+		assertTrue("Sdtudent has already existed", student.equals(false));
+		//student successfully created
+		student=StudentTable.getInstance().createStudent("Jeeve@carleton.ca", "Jeeve", "FT");
+		assertTrue("Sdtudent has already existed", student.equals(true));
 	}
 
 }
