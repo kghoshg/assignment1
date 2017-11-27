@@ -61,7 +61,10 @@ public class CourseTable {
 	}
     
     public String listCourses(){
-		
-		return "";
+    	String output = "\n";
+		for (Course course : courseList) {
+			output += course.getTitle() + " (" + course.getCourseCode() + ")\n\n";
+		}
+		return output;
 	}
 }
