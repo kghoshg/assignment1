@@ -23,6 +23,7 @@ public class InputHandlerTest {
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
 	public static final int LISTSTUDENTS=14;
+	public static final int LISTCOURSES=15;
 	public static final int DELETECOURSE=16;
 	
 	InputHandler inputHandler;
@@ -102,6 +103,12 @@ public class InputHandlerTest {
 		//testing logout option while create course
 		serverOutput = inputHandler.processInput("log out", CREATECOURSE);
 		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
+		//testing logout option while create course
+		serverOutput = inputHandler.processInput("log out", DELETECOURSE);
+		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
+		//testing logout option while list courses
+		serverOutput = inputHandler.processInput("log out", LISTCOURSES);
+		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
 	}
 	
 	@Test
@@ -117,6 +124,12 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 		//testing main menu option while creating course
 		serverOutput = inputHandler.processInput("main menu", CREATECOURSE);
+		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
+		//testing main menu option while creating course
+		serverOutput = inputHandler.processInput("main menu", DELETECOURSE);
+		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
+		//testing main menu option while list courses
+		serverOutput = inputHandler.processInput("main menu", LISTCOURSES);
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 	}
 	
@@ -141,7 +154,7 @@ public class InputHandlerTest {
 		// testing 'list student' using menu when the clerk wants to see it.
 		serverOutput = inputHandler.processInput("yes", LISTSTUDENTS);
 		assertTrue(serverOutput.getOutput().length() > 5);
-		// testing 'list student' using menu when the clerk wants to see it.
+		// testing 'list student' using menu when the clerk does not wants to see it.
 		serverOutput = inputHandler.processInput("no", LISTSTUDENTS);
 		assertTrue(serverOutput.getOutput().contains("Alright, have an nice day!"));
 	}
@@ -164,13 +177,26 @@ public class InputHandlerTest {
 		//delete course menu test
 		serverOutput = inputHandler.processInput("delete course", CLERK);
 		assertTrue(serverOutput.getOutput().contains("Please Input Course Info:'course code'"));
-		// testing 'deleting student' using menu and when course does not exist
+		// testing 'deleting course' using menu and when course does not exist
 		serverOutput = inputHandler.processInput("CO5505", DELETECOURSE);
 		assertTrue(serverOutput.getOutput().contains("The course successfully deleted!"));
-		// testing 'deleting student' using menu and when course does exist
+		// testing 'deleting course' using menu and when course does exist
 		serverOutput = inputHandler.processInput("CO0000", DELETECOURSE);
 		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist!"));
 		
+	}
+	
+	@Test
+	public void testListCourse(){
+		//list course menu test
+		serverOutput = inputHandler.processInput("list students", CLERK);
+		assertTrue(serverOutput.getOutput().contains("Do you want to see the list of all students? (yes/no)"));
+		// testing 'list course' using menu when the clerk wants to see it.
+		serverOutput = inputHandler.processInput("yes", LISTSTUDENTS);
+		assertTrue(serverOutput.getOutput().length() > 5);
+		// testing 'list course' using menu when the clerk does not wants to see it.
+		serverOutput = inputHandler.processInput("no", LISTSTUDENTS);
+		assertTrue(serverOutput.getOutput().contains("Alright, have an nice day!"));
 	}
 
 }
