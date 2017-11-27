@@ -11,10 +11,10 @@ public class CourseTableTest {
 	@Test
 	public void testFindByCourseByCode() {
 		//when course does not exist
-		boolean result = CourseTable.findByCourseByCode("XXXX");
-		assertTrue("Course does not exist", result);
+		boolean result = CourseTable.getInstance().findByCourseByCode("XXXX");
+		assertTrue("Course does not exist", !result);
 		//when course does exist
-		result = CourseTable.findByCourseByCode("co5104");
+		result = CourseTable.getInstance().findByCourseByCode("co5104");
 		assertTrue("Course does not exist", result);
 	}
 	

@@ -27,8 +27,16 @@ public class CourseTable {
         return CourseListHolder.INSTANCE;
     }
 	
-    boolean findByCourseByCode(String courseCode){
+    public boolean findByCourseByCode(String courseCode){
     	
-    	return null;
+    	boolean found = false;
+		
+		for(int i=0;i<courseList.size();i++){
+			if(courseList.get(i).getCourseCode().equalsIgnoreCase(courseCode)){
+				found=true;
+			}
+		}
+		
+		return found;
     }
 }
