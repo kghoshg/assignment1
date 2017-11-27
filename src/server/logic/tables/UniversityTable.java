@@ -22,5 +22,26 @@ public class UniversityTable {
     	logger.info(String.format("Operation:Initialize UniversityTable;UniversityTable: %s", registerList));
     };
     
+    public List<University> getRegInfo(){
+    	return null;
+    }
+    
+    public int findCoursesTakenByAStudent(int studentNo){
+    	return 0;
+    }
+    
+    public int totalStudentsOfACourse(String courseCode){
+    	
+    	return 0;
+    }
+    
+    public boolean alreadyRegistered(String courseCode, int studentNo){
+    	
+    	return false;
+    }
+    
+    public static final UniversityTable getInstance() {
+        return RegisterListHolder.INSTANCE;
+    }
 
 }
