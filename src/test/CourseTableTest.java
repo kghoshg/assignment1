@@ -30,8 +30,8 @@ public class CourseTableTest {
 	}
 	
 	@Test
-	public void testListCourse(){
-		fail("Not yet implemented");
+	public void testListCourse(){		
+		assertTrue(CourseTable.getInstance().listCourses().length() > 5);
 	}
 
 
