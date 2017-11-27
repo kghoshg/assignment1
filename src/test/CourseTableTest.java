@@ -33,6 +33,11 @@ public class CourseTableTest {
 	public void testListCourse(){		
 		assertTrue(CourseTable.getInstance().listCourses().length() > 5);
 	}
+	
+	@Test
+	public void testDeleteCourse(){
+		fail("Not yet implemented");
+	}
 
 
 }
