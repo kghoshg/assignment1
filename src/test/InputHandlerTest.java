@@ -20,6 +20,7 @@ public class InputHandlerTest {
 	public static final int STUDENT = 4;
 	public static final int STUDENTLOGIN=5;
 	public static final int CREATESTUDENT=6;
+	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
 	public static final int LISTSTUDENTS=14;
 	
@@ -97,6 +98,9 @@ public class InputHandlerTest {
 		//testing logout option while list student
 		serverOutput = inputHandler.processInput("log out", LISTSTUDENTS);
 		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
+		//testing logout option while create course
+		serverOutput = inputHandler.processInput("log out", CREATECOURSE);
+		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
 	}
 	
 	@Test
@@ -109,6 +113,9 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 		//testing main menu option while list students
 		serverOutput = inputHandler.processInput("main menu", LISTSTUDENTS);
+		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
+		//testing main menu option while creating course
+		serverOutput = inputHandler.processInput("main menu", CREATECOURSE);
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 	}
 	
@@ -144,7 +151,7 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("create course", CLERK);
 		assertTrue(serverOutput.getOutput().contains("Please Input Course Info:'name,code'"));
 		// testing 'create course' using menu and when course does not exist
-		serverOutput = inputHandler.processInput("A new course,CO5555", CREATESTUDENT);
+		serverOutput = inputHandler.processInput("A new course,CO5555", CREATECOURSE);
 		assertTrue(serverOutput.getOutput().contains("Success!"));
 		// testing 'create course' using menu and when course does exist
 		serverOutput = inputHandler.processInput("Object-Oriented Software Development,CO5104", CREATESTUDENT);
