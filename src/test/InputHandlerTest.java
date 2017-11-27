@@ -135,7 +135,7 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().length() > 5);
 		// testing 'list student' using menu when the clerk wants to see it.
 		serverOutput = inputHandler.processInput("no", LISTSTUDENTS);
-		//assertTrue(serverOutput.getOutput().contains("Alright, have an nice day!"));
+		assertTrue(serverOutput.getOutput().contains("Alright, have an nice day!"));
 	}
 
 }
