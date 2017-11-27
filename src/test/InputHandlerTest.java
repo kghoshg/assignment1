@@ -83,12 +83,16 @@ public class InputHandlerTest {
 	
 	@Test
 	public void testLougout(){
-		fail("Not yet implemented");
+		//test login-out while creating student
+		serverOutput = inputHandler.processInput("log out", CREATESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
 	}
 	
 	@Test
 	public void testReturningMainMenu(){
-		fail("Not yet implemented");
+		//test returning to main menu while creating student
+		serverOutput = inputHandler.processInput("main menu", CREATESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 	}
 
 }
