@@ -165,10 +165,10 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("delete course", CLERK);
 		assertTrue(serverOutput.getOutput().contains("Please Input Course Info:'course code'"));
 		// testing 'deleting student' using menu and when course does not exist
-		serverOutput = inputHandler.processInput("CO0000", DELETECOURSE);
+		serverOutput = inputHandler.processInput("CO5505", DELETECOURSE);
 		assertTrue(serverOutput.getOutput().contains("The course successfully deleted!"));
 		// testing 'deleting student' using menu and when course does exist
-		serverOutput = inputHandler.processInput("CO5505", DELETECOURSE);
+		serverOutput = inputHandler.processInput("CO0000", DELETECOURSE);
 		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist!"));
 		
 	}

@@ -17,6 +17,7 @@ public class OutputHandler {
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
 	public static final int LISTSTUDENTS=14;
+	public static final int DELETECOURSE=16;
 	
 	public Output clerkLogin(String input) {
 		Output output=new Output("",0);
@@ -132,6 +133,28 @@ public class OutputHandler {
         		output.setOutput("Success!");
         	}else{
         		output.setOutput("The Course Already Exists!");
+        	}
+        	output.setState(CLERK);
+        }
+		return output;
+	}
+	
+	public Output deleteCourse(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+        boolean found=CourseTable.getInstance().findByCourseByCode(strArray[0]);
+        Object result;
+        if(strArray.length < 1){
+        	output.setOutput("Your input should be in this format:'course'");
+        	output.setState(DELETECOURSE);
+        }else if(!found){
+        	output.setOutput("The Course Does Not Exist!");
+        	output.setState(DELETECOURSE);
+        }else{
+        	result=CourseTable.getInstance().destroyCourse(strArray[0]);
+        	if(result.equals(true)){
+        		output.setOutput("The course successfully deleted!");
         	}
         	output.setState(CLERK);
         }
