@@ -2,6 +2,8 @@ package server.logic.tables;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
 import org.apache.log4j.Logger;
 
 import server.logic.model.Student;
@@ -57,7 +59,25 @@ public class StudentTable {
 	}
 	
 	public Object createStudent(String string, String string2, String status) {	
-		return null;
+		boolean result=true;
+		int flag=0;
+		for(int i=0;i<studentList.size();i++){
+			String email=(studentList.get(i)).getUsername();
+			if(email.equalsIgnoreCase(string)){
+				flag=flag+1;
+			}else{
+				flag=flag+0;	
+			}
+		}
+		if(flag==0){
+			Student newuser=new Student(studentList.size(),string,string2, 100000 + new Random().nextInt(900000),status);
+			result=studentList.add(newuser);
+			logger.info(String.format("Operation:Create New Student;Student Info:[%s,%s];State:Success", string,string2));
+		}else{
+			result=false;
+			logger.info(String.format("Operation:Create New Student;Student Info:[%s,%s];State:Fail;Reason:The User already existed.", string,string2));
+		}
+		return result;	
 	}
 	
 }
