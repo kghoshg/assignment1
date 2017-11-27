@@ -17,6 +17,7 @@ public class OutputHandler {
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
 	public static final int LISTSTUDENTS=14;
+	public static final int LISTCOURSES=15;
 	public static final int DELETECOURSE=16;
 	
 	public Output clerkLogin(String input) {
@@ -155,6 +156,25 @@ public class OutputHandler {
         	result=CourseTable.getInstance().destroyCourse(strArray[0]);
         	if(result.equals(true)){
         		output.setOutput("The course successfully deleted!");
+        	}
+        	output.setState(CLERK);
+        }
+		return output;
+	}
+	
+	public Output listCourses(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+		if(strArray.length < 1){
+        	output.setOutput("Your input should be in this format:'yes/no'");
+        	output.setState(LISTCOURSES);
+        }else{
+        	if(strArray[0].contains("no") || strArray[0].contains("No")){
+        		output.setOutput("Alright, have an nice day!");
+            	output.setState(LISTCOURSES);
+        	}else{
+        		output.setOutput(CourseTable.getInstance().listCourses());
         	}
         	output.setState(CLERK);
         }

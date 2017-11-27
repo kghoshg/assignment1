@@ -189,7 +189,7 @@ public class InputHandlerTest {
 	@Test
 	public void testListCourse(){
 		//list course menu test
-		serverOutput = inputHandler.processInput("list students", CLERK);
+		serverOutput = inputHandler.processInput("list courses", CLERK);
 		assertTrue(serverOutput.getOutput().contains("Do you want to see the list of all students? (yes/no)"));
 		// testing 'list course' using menu when the clerk wants to see it.
 		serverOutput = inputHandler.processInput("yes", LISTSTUDENTS);

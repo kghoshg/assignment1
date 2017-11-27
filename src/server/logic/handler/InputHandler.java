@@ -15,7 +15,9 @@ public class InputHandler {
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
 	public static final int LISTSTUDENTS=14;
+	public static final int LISTCOURSES=15;
 	public static final int DELETECOURSE=16;
+	
 
 	OutputHandler outputHandler=new OutputHandler();
 
@@ -81,6 +83,11 @@ public class InputHandler {
             }else if (input.equalsIgnoreCase("delete course")) {
             	output = "Please Input Course Info:'course code'";
             	state=CREATECOURSE;
+            	oo.setOutput(output);
+	            oo.setState(state);
+            }else if (input.equalsIgnoreCase("list courses")) {
+            	output = "Do you want to see the list of all students? (yes/no)";
+            	state=LISTCOURSES;
             	oo.setOutput(output);
 	            oo.setState(state);
             }
@@ -169,6 +176,24 @@ public class InputHandler {
 	            oo.setState(state);
         	}else{
         		o=outputHandler.deleteCourse(input);
+        		output=o.getOutput();
+        		state=o.getState();
+        		oo.setOutput(output);
+	            oo.setState(state);
+        	}
+        }else if(state==LISTCOURSES){
+        	if(input.equalsIgnoreCase("log out")){
+            	output = "Successfully Log Out!";
+                state = WAITING;
+                oo.setOutput(output);
+	            oo.setState(state);
+        	}else if(input.equalsIgnoreCase("main menu")){
+        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+                state = CLERK;
+                oo.setOutput(output);
+	            oo.setState(state);
+        	}else{
+        		o=outputHandler.listCourses(input);
         		output=o.getOutput();
         		state=o.getState();
         		oo.setOutput(output);
