@@ -27,4 +27,8 @@ public class CourseTable {
         return CourseListHolder.INSTANCE;
     }
 	
+    boolean findByCourseByCode(String courseCode){
+    	
+    	return null;
+    }
 }
