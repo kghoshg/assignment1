@@ -23,6 +23,7 @@ public class InputHandlerTest {
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
 	public static final int LISTSTUDENTS=14;
+	public static final int DELETECOURSE=16;
 	
 	InputHandler inputHandler;
 	ServerOutput serverOutput;
@@ -156,6 +157,20 @@ public class InputHandlerTest {
 		// testing 'create course' using menu and when course does exist
 		serverOutput = inputHandler.processInput("Object-Oriented Software Development,CO5104", CREATECOURSE);
 		assertTrue(serverOutput.getOutput().contains("The Course Already Exists!"));
+	}
+	
+	@Test
+	public void testDestroyCourse(){
+		//delete course menu test
+		serverOutput = inputHandler.processInput("delete course", CLERK);
+		assertTrue(serverOutput.getOutput().contains("Please Input Course Info:'course code'"));
+		// testing 'deleting student' using menu and when course does not exist
+		serverOutput = inputHandler.processInput("CO0000", DELETECOURSE);
+		assertTrue(serverOutput.getOutput().contains("The course successfully deleted!"));
+		// testing 'deleting student' using menu and when course does exist
+		serverOutput = inputHandler.processInput("CO5505", DELETECOURSE);
+		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist!"));
+		
 	}
 
 }
