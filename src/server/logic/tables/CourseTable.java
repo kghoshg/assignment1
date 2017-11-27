@@ -65,6 +65,7 @@ public class CourseTable {
 		for (Course course : courseList) {
 			output += course.getTitle() + " (" + course.getCourseCode() + ")\n\n";
 		}
+		logger.info(String.format("List all existing courses"));
 		return output;
 	}
     
