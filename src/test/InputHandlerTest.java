@@ -80,5 +80,15 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("a@b.ca,xxxx", CREATESTUDENT);
 		assertTrue(serverOutput.getOutput().contains("the student is successfully created"));
 	}
+	
+	@Test
+	public void testLougout(){
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testReturningMainMenu(){
+		fail("Not yet implemented");
+	}
 
 }
