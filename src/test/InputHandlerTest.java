@@ -140,7 +140,15 @@ public class InputHandlerTest {
 	
 	@Test
 	public void testCreateCourse(){
-		fail("Not yet implemented");
+		//create course menu test
+		serverOutput = inputHandler.processInput("create course", CLERK);
+		assertTrue(serverOutput.getOutput().contains("Please Input Course Info:'name,code'"));
+		// testing 'create course' using menu and when course does not exist
+		serverOutput = inputHandler.processInput("A new course,CO5555", CREATESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("Success!"));
+		// testing 'create course' using menu and when course does exist
+		serverOutput = inputHandler.processInput("Object-Oriented Software Development,CO5104", CREATESTUDENT);
+		assertTrue(serverOutput.getOutput().contains("The Course Already Exists!"));
 	}
 
 }
