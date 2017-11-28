@@ -119,6 +119,12 @@ public class InputHandlerTest {
 		//testing logout menu option while register course
 		serverOutput = inputHandler.processInput("log out", DEREGISTERCOURSE);
 		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
+		//testing logout menu option while select course
+		serverOutput = inputHandler.processInput("log out", SELECTCOURSE);
+		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
+		//testing logout menu option while drop course
+		serverOutput = inputHandler.processInput("log out", DROPCOURSE);
+		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
 	}
 	
 	@Test
@@ -146,6 +152,12 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 		//testing main menu option while deregister course
 		serverOutput = inputHandler.processInput("main menu", DEREGISTERCOURSE);
+		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
+		//testing main menu option while select course
+		serverOutput = inputHandler.processInput("main menu", SELECTCOURSE);
+		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
+		//testing main menu option while drop course
+		serverOutput = inputHandler.processInput("main menu", DROPCOURSE);
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 	}
 	
@@ -258,10 +270,10 @@ public class InputHandlerTest {
 	public void testDropCourse(){
 		//drop course menu test
 		serverOutput = inputHandler.processInput("drop course", STUDENT);
-		assertTrue(serverOutput.getOutput().contains("Please Input course Info:'course code'"));
+		assertTrue(serverOutput.getOutput().contains("Please Input course and student Info:'course code,student number'"));
 		// dropping course with incorrect course code
 		serverOutput = inputHandler.processInput("COxxxx,1234567", DROPCOURSE);
-		assertTrue(serverOutput.getOutput().contains("Your input should be in this format:'coursecode,student number'"));
+		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist!"));
 		// dropping course with correct course code
 		serverOutput = inputHandler.processInput("CO5008,7654321", DROPCOURSE);
 		assertTrue(serverOutput.getOutput().contains("Successfully deregistered!!"));

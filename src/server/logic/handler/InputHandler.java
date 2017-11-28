@@ -15,6 +15,7 @@ public class InputHandler {
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
 	public static final int REGISTERCOURSE=10;
+	public static final int DROPCOURSE=11;
 	public static final int SELECTCOURSE=12;
 	public static final int DEREGISTERCOURSE=13;
 	public static final int LISTSTUDENTS=14;
@@ -120,7 +121,12 @@ public class InputHandler {
                 state = STUDENT;
                 oo.setOutput(output);
 	            oo.setState(state);
-        	}else{
+        	}else if (input.equalsIgnoreCase("drop course")) {
+            	output = "Please Input course and student Info:'course code,student number'";
+            	state=DROPCOURSE;
+            	oo.setOutput(output);
+	            oo.setState(state);
+            }else{
             	output = "Please select from the menu.Menu:Register/Deregister/Drop/Select Course";
                 state = STUDENT;
                 oo.setOutput(output);
@@ -283,6 +289,24 @@ public class InputHandler {
 	            oo.setState(state);
         	}else{
         		o=outputHandler.listCourses(input);
+        		output=o.getOutput();
+        		state=o.getState();
+        		oo.setOutput(output);
+	            oo.setState(state);
+        	}
+        }else if(state==DROPCOURSE){
+        	if(input.equalsIgnoreCase("log out")){
+            	output = "Successfully Log Out!";
+                state = WAITING;
+                oo.setOutput(output);
+	            oo.setState(state);
+        	}else if(input.equalsIgnoreCase("main menu")){
+        		output = "What can I do for you?Menu:Register/Deregister/Drop/Select Course.";
+                state = STUDENT;
+                oo.setOutput(output);
+	            oo.setState(state);
+        	}else{
+        		o=outputHandler.dropCourse(input);
         		output=o.getOutput();
         		state=o.getState();
         		oo.setOutput(output);

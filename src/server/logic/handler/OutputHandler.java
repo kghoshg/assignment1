@@ -19,6 +19,8 @@ public class OutputHandler {
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
 	public static final int REGISTERCOURSE=10;
+	public static final int DROPCOURSE=11;
+	public static final int SELECTCOURSE=12;
 	public static final int DEREGISTERCOURSE=13;
 	public static final int LISTSTUDENTS=14;
 	public static final int LISTCOURSES=15;
@@ -239,5 +241,24 @@ public class OutputHandler {
         }
 		return output;
 	}
+	
+	public Output dropCourse(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+        if(strArray.length < 2){
+        	output.setOutput("Your input should be in this format:'coursecode,student number'");
+        	output.setState(DROPCOURSE);
+        }else if(!CourseTable.getInstance().findByCourseByCode(strArray[0])){
+        	output.setOutput("The Course Does Not Exist!");
+        	output.setState(DROPCOURSE);
+        }else{
+	        StudentTable.getInstance().dropCourse(strArray[0], Integer.parseInt(strArray[1]));
+	        output.setOutput("Successfully deregistered!!");	        	
+        	output.setState(DROPCOURSE);
+        }
+		return output;
+	}
+	
 
 }
