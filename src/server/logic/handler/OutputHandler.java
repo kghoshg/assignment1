@@ -18,6 +18,7 @@ public class OutputHandler {
 	public static final int CREATESTUDENT=6;
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
+	public static final int REGISTERSTUDENT=8;
 	public static final int REGISTERCOURSE=10;
 	public static final int DROPCOURSE=11;
 	public static final int SELECTCOURSE=12;
@@ -256,6 +257,30 @@ public class OutputHandler {
 	        StudentTable.getInstance().dropCourse(strArray[0], Integer.parseInt(strArray[1]));
 	        output.setOutput("Successfully deregistered!!");	        	
         	output.setState(DROPCOURSE);
+        }
+		return output;
+	}
+	
+	public Output registerStudentForCourse(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+        boolean result[];
+        if(strArray.length < 2){
+        	output.setOutput("Your input should in this format:'student number, course code'");
+        	output.setState(REGISTERSTUDENT);
+        }else{
+        	result=UniversityTable.getInstance().registerStudent(strArray[0], Integer.parseInt(strArray[1]));
+        	if(result[0]){
+        		output.setOutput("course does not exist");
+        	}else if(result[1]){
+        		output.setOutput("student does not exist");
+        	}else if(result[2]){
+        		output.setOutput("already registered");
+        	}else{
+        		output.setOutput("registration successful");
+        	}
+        	output.setState(CLERK);
         }
 		return output;
 	}

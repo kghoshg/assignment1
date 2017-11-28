@@ -13,6 +13,7 @@ public class InputHandler {
 	public static final int STUDENTLOGIN=5;
 	public static final int CREATESTUDENT=6;
 	public static final int CREATECOURSE=7;
+	public static final int REGISTERSTUDENT=8;
 	public static final int DELETESTUDENT=9;
 	public static final int REGISTERCOURSE=10;
 	public static final int DROPCOURSE=11;
@@ -93,6 +94,26 @@ public class InputHandler {
             	output = "Do you want to see the list of all students? (yes/no)";
             	state=LISTCOURSES;
             	oo.setOutput(output);
+	            oo.setState(state);
+            }else if (input.equalsIgnoreCase("register student")) {
+	            output = "Please Input course code and student number:'course code, student number'";
+	            state=REGISTERSTUDENT;
+	            oo.setOutput(output);
+	            oo.setState(state);
+            }else if(input.equalsIgnoreCase("log out")){
+            	output = "Successfully Log Out!";
+                state = WAITING;
+                oo.setOutput(output);
+	            oo.setState(state);
+            }else if(input.equalsIgnoreCase("main menu")){
+        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses";
+                state = CLERK;
+                oo.setOutput(output);
+	            oo.setState(state);
+        	}else{
+            	output = "Please select from the menu.Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+                state = CLERK;
+                oo.setOutput(output);
 	            oo.setState(state);
             }
 		}else if (state==STUDENT){
@@ -235,6 +256,24 @@ public class InputHandler {
 	            oo.setState(state);
         	}else{
         		o=outputHandler.listCourses(input);
+        		output=o.getOutput();
+        		state=o.getState();
+        		oo.setOutput(output);
+	            oo.setState(state);
+        	}
+        }else if(state==REGISTERSTUDENT){
+        	if(input.equalsIgnoreCase("log out")){
+            	output = "Successfully Log Out!";
+                state = WAITING;
+                oo.setOutput(output);
+	            oo.setState(state);
+        	}else if(input.equalsIgnoreCase("main menu")){
+        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+                state = CLERK;
+                oo.setOutput(output);
+	            oo.setState(state);
+        	}else{
+        		o=outputHandler.registerStudentForCourse(input);
         		output=o.getOutput();
         		state=o.getState();
         		oo.setOutput(output);

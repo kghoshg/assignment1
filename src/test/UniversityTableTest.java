@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import server.logic.tables.CourseTable;
+import server.logic.tables.StudentTable;
 import server.logic.tables.UniversityTable;
 
 public class UniversityTableTest {
@@ -30,6 +31,13 @@ public class UniversityTableTest {
 	public void testFindCoursesTakenByAStudent() {
 		int answer = UniversityTable.getInstance().findCoursesTakenByAStudent(978144266);
 		assertTrue("finding the courses taken by a student", answer == 1);
+	}
+	
+	@Test
+	public void testRegisterStudent(){
+		//test register student when both student and course exist
+		boolean result[] = UniversityTable.getInstance().registerStudent("co5104",9123874);
+		assertTrue("registration successful!", result[1] && result[2] && result[3]);
 	}
 
 }

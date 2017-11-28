@@ -68,5 +68,12 @@ public class UniversityTable {
     public long getUniversityElapseTime(){
     	return new Date().getTime() - aUniversity.getUniversityStarttime();
     }
+    
+    public  boolean [] registerStudent(String courseCode, int studentNo){
+		boolean result[] = {false, false, false};
+		
+		return result;	
+    }
+    
 
 }
