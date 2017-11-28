@@ -87,7 +87,7 @@ public class InputHandler {
 	            oo.setState(state);
             }else if (input.equalsIgnoreCase("delete course")) {
             	output = "Please Input Course Info:'course code'";
-            	state=CREATECOURSE;
+            	state=DELETECOURSE;
             	oo.setOutput(output);
 	            oo.setState(state);
             }else if (input.equalsIgnoreCase("list courses")) {
@@ -123,7 +123,7 @@ public class InputHandler {
             	oo.setOutput(output);
 	            oo.setState(state);
             }else if (input.equalsIgnoreCase("deregister course")) {
-            	output = "Please Input course Info:'course code'";
+            	output = "Please Input course Info:'course code,student number'";
             	state=DEREGISTERCOURSE;
             	oo.setOutput(output);
 	            oo.setState(state);
@@ -160,7 +160,7 @@ public class InputHandler {
 				oo.setOutput(output);
 				oo.setState(state);
 			}else if(input.equalsIgnoreCase("main menu")){
-				output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+				output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register Student, Cancel Course, List /Students/Courses.";
 				state = CLERK;
 				oo.setOutput(output);
 				oo.setState(state);
@@ -178,7 +178,7 @@ public class InputHandler {
                 oo.setOutput(output);
 	            oo.setState(state);
         	}else if(input.equalsIgnoreCase("main menu")){
-        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register Student, Cancel Course, List /Students/Courses.";
                 state = CLERK;
                 oo.setOutput(output);
 	            oo.setState(state);
@@ -196,7 +196,7 @@ public class InputHandler {
                 oo.setOutput(output);
 	            oo.setState(state);
         	}else if(input.equalsIgnoreCase("main menu")){
-        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register Student, Cancel Course, List /Students/Courses.";
                 state = CLERK;
                 oo.setOutput(output);
 	            oo.setState(state);
@@ -214,7 +214,7 @@ public class InputHandler {
                 oo.setOutput(output);
 	            oo.setState(state);
         	}else if(input.equalsIgnoreCase("main menu")){
-        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register Student, Cancel Course, List /Students/Courses.";
                 state = CLERK;
                 oo.setOutput(output);
 	            oo.setState(state);
@@ -232,7 +232,7 @@ public class InputHandler {
                 oo.setOutput(output);
 	            oo.setState(state);
         	}else if(input.equalsIgnoreCase("main menu")){
-        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register Student, Cancel Course, List /Students/Courses.";
                 state = CLERK;
                 oo.setOutput(output);
 	            oo.setState(state);
@@ -250,7 +250,7 @@ public class InputHandler {
                 oo.setOutput(output);
 	            oo.setState(state);
         	}else if(input.equalsIgnoreCase("main menu")){
-        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register Student, Cancel Course, List /Students/Courses.";
                 state = CLERK;
                 oo.setOutput(output);
 	            oo.setState(state);
@@ -268,7 +268,7 @@ public class InputHandler {
                 oo.setOutput(output);
 	            oo.setState(state);
         	}else if(input.equalsIgnoreCase("main menu")){
-        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register/Cancel/Destroy Course, List /Students/Courses.";
+        		output = "What can I do for you?Menu:Create Student/Course, Delete Student/Course, Register Student, Cancel Course, List /Students/Courses.";
                 state = CLERK;
                 oo.setOutput(output);
 	            oo.setState(state);
@@ -327,7 +327,7 @@ public class InputHandler {
                 oo.setOutput(output);
 	            oo.setState(state);
         	}else{
-        		o=outputHandler.listCourses(input);
+        		o=outputHandler.selectCourse(input);
         		output=o.getOutput();
         		state=o.getState();
         		oo.setOutput(output);

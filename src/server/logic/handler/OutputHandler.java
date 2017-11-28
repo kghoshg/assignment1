@@ -255,8 +255,8 @@ public class OutputHandler {
         	output.setState(DROPCOURSE);
         }else{
 	        StudentTable.getInstance().dropCourse(strArray[0], Integer.parseInt(strArray[1]));
-	        output.setOutput("Successfully deregistered!!");	        	
-        	output.setState(DROPCOURSE);
+	        output.setOutput("Successfully dropped!!");	        	
+        	output.setState(STUDENT);
         }
 		return output;
 	}
@@ -285,5 +285,23 @@ public class OutputHandler {
 		return output;
 	}
 	
+	public Output selectCourse(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+		if(strArray.length < 1){
+        	output.setOutput("Your input should in this format:'yes/no'");
+        	output.setState(SELECTCOURSE);
+        }else{
+        	if(strArray[0].contains("no") || strArray[0].contains("No")){
+        		output.setOutput("Alright, have an nice day!");
+            	output.setState(SELECTCOURSE);
+        	}else{
+        		output.setOutput(CourseTable.getInstance().listCourses());
+        	}
+        	output.setState(STUDENT);
+        }
+		return output;
+	}
 
 }

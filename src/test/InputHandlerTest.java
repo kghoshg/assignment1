@@ -251,7 +251,7 @@ public class InputHandlerTest {
 	public void testDeregisterCourse(){
 		//register course menu test
 		serverOutput = inputHandler.processInput("deregister course", STUDENT);
-		assertTrue(serverOutput.getOutput().contains("Please Input course Info:'course code'"));
+		assertTrue(serverOutput.getOutput().contains("Please Input course Info:'course code,student number'"));
 		// testing 'register course' using menu when course does not exist.
 		serverOutput = inputHandler.processInput("CO4321,9123874", DEREGISTERCOURSE);
 		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist"));
@@ -283,7 +283,7 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist!"));
 		// dropping course with correct course code
 		serverOutput = inputHandler.processInput("CO5008,7654321", DROPCOURSE);
-		assertTrue(serverOutput.getOutput().contains("Successfully deregistered!!"));
+		assertTrue(serverOutput.getOutput().contains("Successfully dropped!!"));
 	}
 	@Test
 	public void testRegisterStudent(){
