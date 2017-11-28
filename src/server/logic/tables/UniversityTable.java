@@ -92,5 +92,10 @@ public class UniversityTable {
 		return result;	
     }
     
+    public boolean cancelCourse(String courseCode){
+    	boolean result = false;
+    	
+    	return result;
+    }
 
 }

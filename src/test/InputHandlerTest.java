@@ -30,6 +30,7 @@ public class InputHandlerTest {
 	public static final int LISTSTUDENTS=14;
 	public static final int LISTCOURSES=15;
 	public static final int DELETECOURSE=16;
+	public static final int CANCELCOURSE=16;
 	
 	InputHandler inputHandler;
 	ServerOutput serverOutput;
@@ -129,6 +130,9 @@ public class InputHandlerTest {
 		//testing logout menu option while registering student
 		serverOutput = inputHandler.processInput("log out", REGISTERSTUDENT);
 		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
+		//testing logout menu option while canceling course
+		serverOutput = inputHandler.processInput("log out", CANCELCOURSE);
+		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
 	}
 	
 	@Test
@@ -165,6 +169,9 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 		//testing main menu option while register student
 		serverOutput = inputHandler.processInput("main menu", REGISTERSTUDENT);
+		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
+		//testing main menu option while canceling course
+		serverOutput = inputHandler.processInput("main menu", CANCELCOURSE);
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 	}
 	
@@ -296,6 +303,19 @@ public class InputHandlerTest {
 		// testing 'register student' using menu when course does exist.
 		serverOutput = inputHandler.processInput("CO5008,7654321", REGISTERSTUDENT);
 		assertTrue(serverOutput.getOutput().contains("registration successful"));
+	}
+	
+	@Test
+	public void testCancelCourse(){
+		//register student menu test
+		serverOutput = inputHandler.processInput("cancel course", CLERK);
+		assertTrue(serverOutput.getOutput().contains("Please Input course code:'course code'"));
+		// testing 'cancel course' using menu when course does not exist.
+		serverOutput = inputHandler.processInput("COxxxx,9123874", REGISTERSTUDENT);
+		assertTrue(serverOutput.getOutput().contains("course does not exist"));
+		// testing 'cancel course' using menu when course does exist.
+		serverOutput = inputHandler.processInput("CO5008,7654321", REGISTERSTUDENT);
+		assertTrue(serverOutput.getOutput().contains("cancellation is successful"));
 	}
 
 }

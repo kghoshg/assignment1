@@ -39,5 +39,13 @@ public class UniversityTableTest {
 		boolean result[] = UniversityTable.getInstance().registerStudent("CO5505",124897934);
 		assertTrue("registration successful!", !(result[0] && result[1] && result[2]));
 	}
+	
+	@Test
+	public void testCancelCourse(){		
+		//test register student when both student and course exist
+		boolean result = UniversityTable.getInstance().cancelCourse("CO5505");
+		assertTrue("cancellation is  successful!", result);
+		
+	}
 
 }
