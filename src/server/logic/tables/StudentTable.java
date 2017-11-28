@@ -110,4 +110,16 @@ public class StudentTable {
 		return output;
 	}
 	
+    public boolean deregisterCourse(String courseCode, int studentNo){
+    	return false;
+    }
+    
+    public boolean registerCourse(String courseCode, int studentNo){
+    	return false;
+    }
+    
+    public boolean dropCourse(String courseCode, int studentNo){
+    	return false;
+    }
+	
 }
