@@ -8,6 +8,8 @@ public class University {
 	int maxCoursesForpTStudents = 2;
 	int passRate= 70;
 	
+	long universityStarttime;
+	
 	int studentNumber;
 	String courseCode;
 	Date registrationDate;
@@ -70,6 +72,13 @@ public class University {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public long getUniversityStarttime() {
+		return universityStarttime;
+	}
+	public void setUniversityStarttime(long universityStarttime) {
+		this.universityStarttime = universityStarttime;
 	}
 	
 }

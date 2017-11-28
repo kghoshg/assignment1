@@ -23,6 +23,7 @@ public class InputHandlerTest {
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
 	public static final int REGISTERCOURSE=10;
+	public static final int DROPCOURSE=11;
 	public static final int SELECTCOURSE=12;
     public static final int DEREGISTERCOURSE=13;
 	public static final int LISTSTUDENTS=14;
@@ -251,6 +252,19 @@ public class InputHandlerTest {
 		// testing 'list course' using menu when the student does not wants to see it.
 		serverOutput = inputHandler.processInput("no", SELECTCOURSE);
 		assertTrue(serverOutput.getOutput().contains("Alright, have an nice day!"));
+	}
+	
+	@Test
+	public void testDropCourse(){
+		//drop course menu test
+		serverOutput = inputHandler.processInput("drop course", STUDENT);
+		assertTrue(serverOutput.getOutput().contains("Please Input course Info:'course code'"));
+		// dropping course with incorrect course code
+		serverOutput = inputHandler.processInput("COxxxx,1234567", DROPCOURSE);
+		assertTrue(serverOutput.getOutput().contains("Your input should be in this format:'coursecode,student number'"));
+		// dropping course with correct course code
+		serverOutput = inputHandler.processInput("CO5008,7654321", DROPCOURSE);
+		assertTrue(serverOutput.getOutput().contains("Successfully deregistered!!"));
 	}
 
 }

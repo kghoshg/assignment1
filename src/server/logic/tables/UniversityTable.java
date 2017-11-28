@@ -12,10 +12,13 @@ public class UniversityTable {
 	
 	private Logger logger = Trace.getInstance().getLogger("opreation_file");
 	List<University> registerList=new ArrayList<University>();
+	private static final University aUniversity = new University();
     private static class RegisterListHolder {
         private static final UniversityTable INSTANCE = new UniversityTable();
     }
     private UniversityTable(){
+    	//setting up university start time
+    	aUniversity.setUniversityStarttime(new Date().getTime());
     	//set up the default list with some instances
     	University register=new University("CO1234",978144266, new Date());
     	University register1=new University("CO4321",978144266, new Date());
@@ -60,6 +63,10 @@ public class UniversityTable {
     
     public static final UniversityTable getInstance() {
         return RegisterListHolder.INSTANCE;
+    }
+    
+    public long getUniversityElapseTime(){
+    	return new Date().getTime() - aUniversity.getUniversityStarttime();
     }
 
 }
