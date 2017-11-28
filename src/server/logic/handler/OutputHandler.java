@@ -160,6 +160,7 @@ public class OutputHandler {
         	output.setState(DELETECOURSE);
         }else if(UniversityTable.getInstance().getUniversityElapseTime() / Config.STIMULATED_DAY > 14){
         	output.setOutput("You cannot delete course as it has been more than two weeks since the begining of the semester");	
+        	output.setState(DELETECOURSE);
 		}else if(!found){
         	output.setOutput("The Course Does Not Exist!");
         	output.setState(DELETECOURSE);
@@ -202,7 +203,8 @@ public class OutputHandler {
         	output.setOutput("Your input should be in this format:'course code, studnet number'");
         	output.setState(REGISTERCOURSE);
         }else if(UniversityTable.getInstance().getUniversityElapseTime() / Config.STIMULATED_DAY > 14){
-        	output.setOutput("You cannot gregister as it has been more than two weeks since the begining of the semester");	
+        	output.setOutput("You cannot register as it has been more than two weeks since the begining of the semester");	
+        	output.setState(REGISTERCOURSE);
 		}else if(!StudentTable.getInstance().lookup(Integer.parseInt(strArray[1]))){
         	output.setOutput("The Student Does Not Exist!");
         	output.setState(REGISTERCOURSE);
@@ -242,7 +244,8 @@ public class OutputHandler {
         	output.setState(DEREGISTERCOURSE);
         	}else{
         		if(UniversityTable.getInstance().getUniversityElapseTime() / Config.STIMULATED_DAY > 14){
-    	        	output.setOutput("You cannot degregister as it has been more than two weeks since the begining of the semester");	
+    	        	output.setOutput("You cannot degregister as it has been more than two weeks since the begining of the semester");
+    	        	output.setState(DEREGISTERCOURSE);
         		}else{
         			StudentTable.getInstance().deregisterCourse(strArray[0], Integer.parseInt(strArray[1]));
     	        	output.setOutput("Successfully deregistered!!");	
@@ -280,7 +283,8 @@ public class OutputHandler {
         	output.setOutput("Your input should in this format:'student number, course code'");
         	output.setState(REGISTERSTUDENT);
         }else if(UniversityTable.getInstance().getUniversityElapseTime() / Config.STIMULATED_DAY > 14){
-        	output.setOutput("You cannot degregister as it has been more than two weeks since the begining of the semester");	
+        	output.setOutput("You cannot register student as it has been more than two weeks since the begining of the semester");	
+        	output.setState(REGISTERSTUDENT);
 		}else{
         	result=UniversityTable.getInstance().registerStudent(strArray[0], Integer.parseInt(strArray[1]));
         	if(result[0]){
@@ -324,7 +328,8 @@ public class OutputHandler {
         	output.setOutput("Please Input course code:'course code'");
         	output.setState(CANCELCOURSE);
         }else if(UniversityTable.getInstance().getUniversityElapseTime() / Config.STIMULATED_DAY > 14){
-        	output.setOutput("You cannot cancel as it has been more than two weeks since the begining of the semester");	
+        	output.setOutput("You cannot cancel as it has been more than two weeks since the begining of the semester");
+        	output.setState(CANCELCOURSE);
 		}else{
         	boolean result = UniversityTable.getInstance().cancelCourse(strArray[0]);
         	if(!result){
