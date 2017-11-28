@@ -21,6 +21,7 @@ public class InputHandlerTest {
 	public static final int STUDENTLOGIN=5;
 	public static final int CREATESTUDENT=6;
 	public static final int CREATECOURSE=7;
+	public static final int REGISTERSTUDENT=8;
 	public static final int DELETESTUDENT=9;
 	public static final int REGISTERCOURSE=10;
 	public static final int DROPCOURSE=11;
@@ -125,6 +126,9 @@ public class InputHandlerTest {
 		//testing logout menu option while drop course
 		serverOutput = inputHandler.processInput("log out", DROPCOURSE);
 		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
+		//testing logout menu option while registering student
+		serverOutput = inputHandler.processInput("log out", REGISTERSTUDENT);
+		assertTrue(serverOutput.getOutput().contains("Successfully Log Out"));
 	}
 	
 	@Test
@@ -158,6 +162,9 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 		//testing main menu option while drop course
 		serverOutput = inputHandler.processInput("main menu", DROPCOURSE);
+		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
+		//testing main menu option while register student
+		serverOutput = inputHandler.processInput("main menu", REGISTERSTUDENT);
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 	}
 	
@@ -277,6 +284,18 @@ public class InputHandlerTest {
 		// dropping course with correct course code
 		serverOutput = inputHandler.processInput("CO5008,7654321", DROPCOURSE);
 		assertTrue(serverOutput.getOutput().contains("Successfully deregistered!!"));
+	}
+	@Test
+	public void testRegisterStudent(){
+		//register student menu test
+		serverOutput = inputHandler.processInput("register student", STUDENT);
+		assertTrue(serverOutput.getOutput().contains("Please Input course code and student number:'course code, student number'"));
+		// testing 'register student' using menu when course does not exist.
+		serverOutput = inputHandler.processInput("CO4321,9123874", REGISTERSTUDENT);
+		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist"));
+		// testing 'register student' using menu when course does exist.
+		serverOutput = inputHandler.processInput("CO5008,7654321", REGISTERSTUDENT);
+		assertTrue(serverOutput.getOutput().contains("registration successful"));
 	}
 
 }
