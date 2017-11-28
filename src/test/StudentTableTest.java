@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import server.logic.tables.CourseTable;
 import server.logic.tables.StudentTable;
 
 public class StudentTableTest {
@@ -36,14 +37,28 @@ public class StudentTableTest {
 	}
 	
 	@Test
+	public void testListStudent(){		
+		assertTrue(StudentTable.getInstance().listStudents().length() > 5);
+	}
+	
+	@Test
+	public void testDeleteStudent(){
+		//when the student exists
+		assertTrue("the student was successfully deleted or deleted", StudentTable.getInstance().delete(2));
+		//when the student does not exist
+		assertTrue("the student does not exist, so the student could not be deleted", !StudentTable.getInstance().delete(10));
+	}
+
+	
+	@Test
 	public void testRegisterCourse(){
-		boolean result = StudentTable.getInstance().registerCourse("co5104", 124897934);
+		boolean result = StudentTable.getInstance().registerCourse("co5104",9123874);
 		assertTrue("Successfully registered with this course!", result);
 	}
 	
 	@Test
 	public void testDeregisterCourse(){
-		boolean result = StudentTable.getInstance().deregisterCourse("co5104",124897934);
+		boolean result = StudentTable.getInstance().deregisterCourse("CO4321",978144266);
 		assertTrue("Successfully deregistered from this course!", result);
 	}
 	@Test

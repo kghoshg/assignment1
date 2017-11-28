@@ -1,18 +1,21 @@
 package server.logic.tables;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import org.apache.log4j.Logger;
 
 import server.logic.model.Student;
+import server.logic.model.University;
 import utilities.Trace;
 
 public class StudentTable {
 	
 	private Logger logger = Trace.getInstance().getLogger("opreation_file");
 	List<Student> studentList=new ArrayList<Student>();
+	List<University> registerList = new ArrayList<University>();
     private static class StudentListHolder {
         private static final StudentTable INSTANCE = new StudentTable();
     }
@@ -26,6 +29,7 @@ public class StudentTable {
     		Student deuser=new Student(i,usernameList[i],passwordList[i], studentNos[i], status);
     		studentList.add(deuser);
 		}
+    	registerList = UniversityTable.getInstance().getRegInfo();
     	logger.info(String.format("Operation:Initialize StudentTable;StudentTable: %s", studentList));
     };
     public static final StudentTable getInstance() {
@@ -85,6 +89,7 @@ public class StudentTable {
 		for(int i=0;i<studentList.size();i++){
 			if(studentList.get(i).getUsername().equalsIgnoreCase(string)){
 				userid=i;
+				logger.info(String.format("Operation:the student was found:[%s,%s];State:success.", "N/A","N/A"));
 			}
 		}
 		return userid;
@@ -104,6 +109,7 @@ public class StudentTable {
 	
 	public String listStudents(){
 		String output = "\n";
+		logger.info(String.format("Operation:listing students:[%s,%s].", "N/A","N/A"));
 		for (Student student: studentList) {
 			output += student.getUsername() + " (" + student.getStudentNumber()+ ")\n\n";
 		}
@@ -111,15 +117,40 @@ public class StudentTable {
 	}
 	
     public boolean deregisterCourse(String courseCode, int studentNo){
-    	return false;
+    	boolean result = false;
+    	for(int i=0;i<registerList.size();i++){
+			if(courseCode.equalsIgnoreCase(registerList.get(i).getCourseCode()) && (studentNo == registerList.get(i).getStudentNumber())){
+				registerList.remove(i);
+				result= true;
+				logger.info(String.format("Operation:deregistration for course is a success:[%s,%s];State:success.", "N/A","N/A"));
+			}			
+		}
+    	return result;
     }
     
     public boolean registerCourse(String courseCode, int studentNo){
-    	return false;
+    	boolean result = false;
+    	try{
+    		University newregistration=new University(courseCode,studentNo, new Date());
+    		registerList.add(newregistration);
+    		result = true;
+    		logger.info(String.format("Operation:Registration for course sucessful:[%s,%s];State:success.", "N/A","N/A"));
+    	}catch(Exception e){
+    		logger.info(String.format("Operation:Registration for course failed:[%s,%s];State:failure.", "N/A","N/A"));
+    	}
+    	return result;
     }
     
     public boolean dropCourse(String courseCode, int studentNo){
-    	return false;
+    	boolean result = false;
+    	for(int i=0;i<registerList.size();i++){
+			if(courseCode.equalsIgnoreCase(registerList.get(i).getCourseCode()) && (studentNo == registerList.get(i).getStudentNumber())){
+				registerList.get(i).setStatus("DR");
+				result = true;
+				logger.info(String.format("Operation:droping course was a success:[%s,%s];State:failure.", "N/A","N/A"));
+			}			
+		}
+    	return result;
     }
 	
 }

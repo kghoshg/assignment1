@@ -18,7 +18,9 @@ public class UniversityTable {
     private UniversityTable(){
     	//set up the default list with some instances
     	University register=new University("CO1234",978144266, new Date());
+    	University register1=new University("CO4321",978144266, new Date());
     	registerList.add(register);
+    	registerList.add(register1);
     	logger.info(String.format("Operation:Initialize UniversityTable;UniversityTable: %s", registerList));
     };
     
