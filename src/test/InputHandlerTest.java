@@ -30,7 +30,7 @@ public class InputHandlerTest {
 	public static final int LISTSTUDENTS=14;
 	public static final int LISTCOURSES=15;
 	public static final int DELETECOURSE=16;
-	public static final int CANCELCOURSE=16;
+	public static final int CANCELCOURSE=17;
 	
 	InputHandler inputHandler;
 	ServerOutput serverOutput;
@@ -311,10 +311,10 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("cancel course", CLERK);
 		assertTrue(serverOutput.getOutput().contains("Please Input course code:'course code'"));
 		// testing 'cancel course' using menu when course does not exist.
-		serverOutput = inputHandler.processInput("COxxxx,9123874", REGISTERSTUDENT);
-		assertTrue(serverOutput.getOutput().contains("course does not exist"));
+		serverOutput = inputHandler.processInput("CO1111", CANCELCOURSE);
+		assertTrue(serverOutput.getOutput().contains("No student was registered with this course"));
 		// testing 'cancel course' using menu when course does exist.
-		serverOutput = inputHandler.processInput("CO5008,7654321", REGISTERSTUDENT);
+		serverOutput = inputHandler.processInput("CO9019", CANCELCOURSE);
 		assertTrue(serverOutput.getOutput().contains("cancellation is successful"));
 	}
 

@@ -26,6 +26,7 @@ public class OutputHandler {
 	public static final int LISTSTUDENTS=14;
 	public static final int LISTCOURSES=15;
 	public static final int DELETECOURSE=16;
+	public static final int CANCELCOURSE=17;
 	
 	public Output clerkLogin(String input) {
 		Output output=new Output("",0);
@@ -304,4 +305,23 @@ public class OutputHandler {
 		return output;
 	}
 
+	public Output cancelCourse(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+		if(strArray.length < 1){
+        	output.setOutput("Please Input course code:'course code'");
+        	output.setState(CANCELCOURSE);
+        }else{
+        	boolean result = UniversityTable.getInstance().cancelCourse(strArray[0]);
+        	if(!result){
+        		output.setOutput("No student was registered with this course");
+            	output.setState(CANCELCOURSE);
+        	}else{
+        		output.setOutput("cancellation is successful");
+        	}
+        	output.setState(CLERK);
+        }
+		return output;
+	}
 }

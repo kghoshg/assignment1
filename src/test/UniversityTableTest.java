@@ -43,7 +43,7 @@ public class UniversityTableTest {
 	@Test
 	public void testCancelCourse(){		
 		//test register student when both student and course exist
-		boolean result = UniversityTable.getInstance().cancelCourse("CO5505");
+		boolean result = UniversityTable.getInstance().cancelCourse("CO4321");
 		assertTrue("cancellation is  successful!", result);
 		
 	}

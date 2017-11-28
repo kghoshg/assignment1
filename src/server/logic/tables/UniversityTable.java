@@ -22,8 +22,10 @@ public class UniversityTable {
     	//set up the default list with some instances
     	University register=new University("CO1234",978144266, new Date());
     	University register1=new University("CO4321",978144266, new Date());
+    	University register2=new University("CO9019",45637218, new Date());
     	registerList.add(register);
     	registerList.add(register1);
+    	registerList.add(register2);
     	logger.info(String.format("Operation:Initialize UniversityTable;UniversityTable: %s", registerList));
     };
     
@@ -94,8 +96,12 @@ public class UniversityTable {
     
     public boolean cancelCourse(String courseCode){
     	boolean result = false;
-    	
+		for(int i=0;i<registerList.size();i++){
+			if(courseCode.equalsIgnoreCase(registerList.get(i).getCourseCode())){
+				registerList.remove(i);
+				result = true;
+			}			
+		}
     	return result;
     }
-
 }
