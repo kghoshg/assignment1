@@ -2,6 +2,7 @@ package server.logic.handler;
 
 import server.logic.handler.model.Output;
 import server.logic.model.Student;
+import server.logic.model.University;
 import server.logic.tables.CourseTable;
 import server.logic.tables.StudentTable;
 import server.logic.tables.UniversityTable;
@@ -157,7 +158,9 @@ public class OutputHandler {
         if(strArray.length < 1){
         	output.setOutput("Your input should be in this format:'course'");
         	output.setState(DELETECOURSE);
-        }else if(!found){
+        }else if(UniversityTable.getInstance().getUniversityElapseTime() / Config.STIMULATED_DAY > 14){
+        	output.setOutput("You cannot delete course as it has been more than two weeks since the begining of the semester");	
+		}else if(!found){
         	output.setOutput("The Course Does Not Exist!");
         	output.setState(DELETECOURSE);
         }else{
@@ -198,7 +201,9 @@ public class OutputHandler {
         if(strArray.length < 1){
         	output.setOutput("Your input should be in this format:'course code, studnet number'");
         	output.setState(REGISTERCOURSE);
-        }else if(!StudentTable.getInstance().lookup(Integer.parseInt(strArray[1]))){
+        }else if(UniversityTable.getInstance().getUniversityElapseTime() / Config.STIMULATED_DAY > 14){
+        	output.setOutput("You cannot gregister as it has been more than two weeks since the begining of the semester");	
+		}else if(!StudentTable.getInstance().lookup(Integer.parseInt(strArray[1]))){
         	output.setOutput("The Student Does Not Exist!");
         	output.setState(REGISTERCOURSE);
         }else if(!CourseTable.getInstance().findByCourseByCode(strArray[0])){
@@ -207,10 +212,10 @@ public class OutputHandler {
         }else if(CourseTable.getInstance().isFull(strArray[0])){
         	output.setOutput("The Course is full!");
         	output.setState(REGISTERCOURSE);
-        }else if( student.getStatus().equalsIgnoreCase("FT") && noCourseTaken >= 4){
+        }else if( student.getStatus().equalsIgnoreCase("FT") && noCourseTaken >= new University().getMaxCoursesForFTStudents()){
         	output.setOutput("A full time student cannot take more than 4 courses!");
         	output.setState(REGISTERCOURSE);
-        }else if( student.getStatus().equalsIgnoreCase("PT") && noCourseTaken >= 2){
+        }else if( student.getStatus().equalsIgnoreCase("PT") && noCourseTaken >= new University().getMaxCoursesForpTStudents()){
         	output.setOutput("A part time student cannot take more than 2 courses!");
         	output.setState(REGISTERCOURSE);
         }else if(UniversityTable.getInstance().alreadyRegistered(strArray[0], Integer.parseInt(strArray[1]))){
@@ -236,8 +241,12 @@ public class OutputHandler {
         	output.setOutput("The Course Does Not Exist!");
         	output.setState(DEREGISTERCOURSE);
         	}else{
-	        	StudentTable.getInstance().deregisterCourse(strArray[0], Integer.parseInt(strArray[1]));
-	        	output.setOutput("Successfully deregistered!!");	        	
+        		if(UniversityTable.getInstance().getUniversityElapseTime() / Config.STIMULATED_DAY > 14){
+    	        	output.setOutput("You cannot degregister as it has been more than two weeks since the begining of the semester");	
+        		}else{
+        			StudentTable.getInstance().deregisterCourse(strArray[0], Integer.parseInt(strArray[1]));
+    	        	output.setOutput("Successfully deregistered!!");	
+        		}
         	}
         	output.setState(STUDENT);
         }
@@ -270,7 +279,9 @@ public class OutputHandler {
         if(strArray.length < 2){
         	output.setOutput("Your input should in this format:'student number, course code'");
         	output.setState(REGISTERSTUDENT);
-        }else{
+        }else if(UniversityTable.getInstance().getUniversityElapseTime() / Config.STIMULATED_DAY > 14){
+        	output.setOutput("You cannot degregister as it has been more than two weeks since the begining of the semester");	
+		}else{
         	result=UniversityTable.getInstance().registerStudent(strArray[0], Integer.parseInt(strArray[1]));
         	if(result[0]){
         		output.setOutput("course does not exist");
@@ -312,7 +323,9 @@ public class OutputHandler {
 		if(strArray.length < 1){
         	output.setOutput("Please Input course code:'course code'");
         	output.setState(CANCELCOURSE);
-        }else{
+        }else if(UniversityTable.getInstance().getUniversityElapseTime() / Config.STIMULATED_DAY > 14){
+        	output.setOutput("You cannot cancel as it has been more than two weeks since the begining of the semester");	
+		}else{
         	boolean result = UniversityTable.getInstance().cancelCourse(strArray[0]);
         	if(!result){
         		output.setOutput("No student was registered with this course");

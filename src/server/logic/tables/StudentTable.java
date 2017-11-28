@@ -147,7 +147,7 @@ public class StudentTable {
 			if(courseCode.equalsIgnoreCase(registerList.get(i).getCourseCode()) && (studentNo == registerList.get(i).getStudentNumber())){
 				registerList.get(i).setStatus("DR");
 				result = true;
-				logger.info(String.format("Operation:droping course was a success:[%s,%s];State:failure.", "N/A","N/A"));
+				logger.info(String.format("Operation:droping course was a success:[%s,%s];State:success.", "N/A","N/A"));
 			}			
 		}
     	return result;

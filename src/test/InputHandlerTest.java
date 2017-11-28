@@ -82,6 +82,7 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("Please select from the menu.Menu:"));
 	}
 	
+	//Scenario-2: clerk creates student
 	@Test
 	public void testCreateStudent(){
 		//create student menu test
@@ -175,6 +176,7 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("What can I do for you?Menu:"));
 	}
 	
+	//Scenario-4: clerk deletes student
 	@Test
 	public void testDeleteStudent(){
 		//deleting student menu test
@@ -201,6 +203,7 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("Alright, have an nice day!"));
 	}
 	
+	//Scenario-1: clerk creates course
 	@Test
 	public void testCreateCourse(){
 		//create course menu test
@@ -214,6 +217,7 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("The Course Already Exists!"));
 	}
 	
+	//Scenario-: clerk destroys course
 	@Test
 	public void testDestroyCourse(){
 		//delete course menu test
@@ -241,6 +245,7 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("Alright, have an nice day!"));
 	}
 	
+	//Scenario-5: students registers course
 	@Test
 	public void testRegisterCourse(){
 		//register course menu test
@@ -254,6 +259,7 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("registration successful!"));
 	}
 	
+	//Scenario-: students deregisters course
 	@Test
 	public void testDeregisterCourse(){
 		//register course menu test
@@ -280,6 +286,7 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("Alright, have an nice day!"));
 	}
 	
+	//Scenario-6: students drop course
 	@Test
 	public void testDropCourse(){
 		//drop course menu test
@@ -292,6 +299,8 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("CO5008,7654321", DROPCOURSE);
 		assertTrue(serverOutput.getOutput().contains("Successfully dropped!!"));
 	}
+	
+	//Scenario-: students drop course
 	@Test
 	public void testRegisterStudent(){
 		//register student menu test
@@ -305,6 +314,7 @@ public class InputHandlerTest {
 		assertTrue(serverOutput.getOutput().contains("registration successful"));
 	}
 	
+	//Scenario-3: clerk cancels course
 	@Test
 	public void testCancelCourse(){
 		//register student menu test

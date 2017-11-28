@@ -102,6 +102,11 @@ public class UniversityTable {
 				result = true;
 			}			
 		}
+		if(result){
+			logger.info(String.format("Operation:Course cancellation;Course info:[%s];State:Success", courseCode));
+		}else{
+			logger.info(String.format("Operation:Course cancellation;Course info:[%s];State:Failure", courseCode));
+		}
     	return result;
     }
 }

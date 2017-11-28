@@ -14,6 +14,7 @@ public class University {
 	String courseCode;
 	Date registrationDate;
 	String status;
+	int grade;
 	
 	public int getMaxCoursesForFTStudents() {
 		return maxCoursesForFTStudents;
@@ -79,6 +80,12 @@ public class University {
 	}
 	public void setUniversityStarttime(long universityStarttime) {
 		this.universityStarttime = universityStarttime;
+	}
+	public int getGrade() {
+		return grade;
+	}
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 	
 }
