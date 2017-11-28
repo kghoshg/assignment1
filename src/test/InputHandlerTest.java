@@ -243,8 +243,8 @@ public class InputHandlerTest {
 	@Test
 	public void testSelectCourses(){
 		//list courses menu test
-		serverOutput = inputHandler.processInput("list courses", STUDENT);
-		assertTrue(serverOutput.getOutput().contains("Do you want to see the list of all students? (yes/no)"));
+		serverOutput = inputHandler.processInput("select course", STUDENT);
+		assertTrue(serverOutput.getOutput().contains("Do you want to see the list of all courses? (yes/no)"));
 		// testing 'list course' using menu when the student wants to see it.
 		serverOutput = inputHandler.processInput("yes", SELECTCOURSE);
 		assertTrue(serverOutput.getOutput().length() > 5);
