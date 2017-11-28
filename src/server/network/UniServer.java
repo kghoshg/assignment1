@@ -12,6 +12,9 @@ import org.apache.log4j.Logger;
 import server.logic.handler.InputHandler;
 import server.logic.handler.model.Client;
 import server.logic.handler.model.ServerOutput;
+import server.logic.tables.CourseTable;
+import server.logic.tables.StudentTable;
+import server.logic.tables.UniversityTable;
 import utilities.Config;
 import utilities.Trace;
 /* Modified method based on the course COMP 3004 example*/
@@ -42,7 +45,9 @@ public class UniServer implements Runnable{
 			thread.start();
 			logger.info(String.format("Server started: %s %d", server,thread.getId()));
 			//Initialize the tables
-			
+			StudentTable.getInstance();
+			CourseTable.getInstance();
+			UniversityTable.getInstance();
 			
 			System.out.println("Server started successfully!");
 		}

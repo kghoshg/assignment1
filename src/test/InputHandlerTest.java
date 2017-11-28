@@ -230,7 +230,7 @@ public class InputHandlerTest {
 	public void testDeregisterCourse(){
 		//register course menu test
 		serverOutput = inputHandler.processInput("deregister course", STUDENT);
-		assertTrue(serverOutput.getOutput().contains("Please Input course Info:'course code, student number'"));
+		assertTrue(serverOutput.getOutput().contains("Please Input course Info:'course code'"));
 		// testing 'register course' using menu when course does not exist.
 		serverOutput = inputHandler.processInput("CO4321,9123874", DEREGISTERCOURSE);
 		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist"));
