@@ -152,5 +152,31 @@ public class StudentTable {
 		}
     	return result;
     }
+    
+	public boolean lookup(int j) {
+		boolean result=true;
+		int flag=0;
+		for(int i=0;i<studentList.size();i++){
+			int userid=(studentList.get(i)).getStudentNumber();
+			if(userid==j){
+				flag=flag+1;
+			}else{
+				flag=flag+0;	
+			}
+		}
+		if(flag==0){
+			result=false;
+		}
+		return result;
+	}
+	
+	public Student getStudent(int studentNo){
+		for(int i=0;i<studentList.size();i++){
+			if(studentList.get(i).getStudentNumber() == studentNo){
+				return studentList.get(i);
+			}
+		}
+		return null;
+	}
 	
 }

@@ -1,8 +1,10 @@
 package server.logic.handler;
 
 import server.logic.handler.model.Output;
+import server.logic.model.Student;
 import server.logic.tables.CourseTable;
 import server.logic.tables.StudentTable;
+import server.logic.tables.UniversityTable;
 import utilities.Config;
 
 public class OutputHandler {
@@ -16,6 +18,7 @@ public class OutputHandler {
 	public static final int CREATESTUDENT=6;
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
+	public static final int REGISTERCOURSE=10;
 	public static final int LISTSTUDENTS=14;
 	public static final int LISTCOURSES=15;
 	public static final int DELETECOURSE=16;
@@ -177,6 +180,41 @@ public class OutputHandler {
         		output.setOutput(CourseTable.getInstance().listCourses());
         	}
         	output.setState(CLERK);
+        }
+		return output;
+	}
+	
+	public Output registerCourse(String input) {
+		Output output=new Output("",0);
+		String[] strArray = null;   
+        strArray = input.split(",");
+        Student student = StudentTable.getInstance().getStudent(Integer.parseInt(strArray[1]));
+        int noCourseTaken = UniversityTable.getInstance().findCoursesTakenByAStudent(Integer.parseInt(strArray[1]));
+        if(strArray.length < 1){
+        	output.setOutput("Your input should be in this format:'course code, studnet number'");
+        	output.setState(REGISTERCOURSE);
+        }else if(!StudentTable.getInstance().lookup(Integer.parseInt(strArray[1]))){
+        	output.setOutput("The Student Does Not Exist!");
+        	output.setState(REGISTERCOURSE);
+        }else if(!CourseTable.getInstance().findByCourseByCode(strArray[0])){
+        	output.setOutput("The Course Does Not Exist!");
+        	output.setState(REGISTERCOURSE);
+        }else if(CourseTable.getInstance().isFull(strArray[0])){
+        	output.setOutput("The Course is full!");
+        	output.setState(REGISTERCOURSE);
+        }else if( student.getStatus().equalsIgnoreCase("FT") && noCourseTaken >= 4){
+        	output.setOutput("A full time student cannot take more than 4 courses!");
+        	output.setState(REGISTERCOURSE);
+        }else if( student.getStatus().equalsIgnoreCase("PT") && noCourseTaken >= 2){
+        	output.setOutput("A part time student cannot take more than 2 courses!");
+        	output.setState(REGISTERCOURSE);
+        }else if(UniversityTable.getInstance().alreadyRegistered(strArray[0], Integer.parseInt(strArray[1]))){
+        	output.setOutput("Already registered!");
+        	output.setState(REGISTERCOURSE);
+        }else{
+        	StudentTable.getInstance().registerCourse(strArray[0], Integer.parseInt(strArray[1]));
+        	output.setOutput("registration successful!");
+        	output.setState(STUDENT);
         }
 		return output;
 	}

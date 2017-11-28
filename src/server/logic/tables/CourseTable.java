@@ -80,4 +80,16 @@ public class CourseTable {
 		}
 		return result;
     }
+    
+	public boolean isFull(String courseCode){
+		boolean check = false;
+		for(int i=0;i<courseList.size();i++){
+			if(courseList.get(i).getCourseCode().equalsIgnoreCase(courseCode)){
+				if(courseList.get(i).getCapSize() == UniversityTable.getInstance().totalStudentsOfACourse(courseCode)){
+					check = true;
+				}
+			}
+		}
+		return check;
+	}
 }

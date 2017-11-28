@@ -22,7 +22,7 @@ public class InputHandlerTest {
 	public static final int CREATESTUDENT=6;
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
-	 public static final int REGISTERCOURSE=10;
+	public static final int REGISTERCOURSE=10;
 	public static final int LISTSTUDENTS=14;
 	public static final int LISTCOURSES=15;
 	public static final int DELETECOURSE=16;
@@ -215,8 +215,8 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("CO4321,9123874", REGISTERCOURSE);
 		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist"));
 		// testing 'register course' using menu when course does exist.
-		serverOutput = inputHandler.processInput("co5104,9123874", REGISTERCOURSE);
-		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist"));
+		serverOutput = inputHandler.processInput("CO5008,7654321", REGISTERCOURSE);
+		assertTrue(serverOutput.getOutput().contains("registration successful"));
 	}
 
 }

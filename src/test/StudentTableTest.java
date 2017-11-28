@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import server.logic.model.Student;
 import server.logic.tables.CourseTable;
 import server.logic.tables.StudentTable;
 
@@ -65,6 +66,18 @@ public class StudentTableTest {
 	public void testDropCourse(){
 		boolean result = StudentTable.getInstance().dropCourse("CO1234", 978144266);
 		assertTrue("Successfully dropped the course!", result);
+	}
+	
+	@Test
+	public void testLookUpByStudentId(){
+		boolean result = StudentTable.getInstance().lookup(7654321);
+		assertTrue("student found", result);
+	}
+	
+	@Test
+	public void testGetStudentObj(){
+		Student result = StudentTable.getInstance().getStudent(7654321);
+		assertTrue("student found", result.getStudentNumber() == 7654321);
 	}
 
 }
