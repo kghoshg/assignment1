@@ -23,6 +23,7 @@ public class InputHandlerTest {
 	public static final int CREATECOURSE=7;
 	public static final int DELETESTUDENT=9;
 	public static final int REGISTERCOURSE=10;
+	public static final int SELECTCOURSE=12;
     public static final int DEREGISTERCOURSE=13;
 	public static final int LISTSTUDENTS=14;
 	public static final int LISTCOURSES=15;
@@ -237,6 +238,19 @@ public class InputHandlerTest {
 		// testing 'register course' using menu when course does exist.
 		serverOutput = inputHandler.processInput("CO5008,7654321", DEREGISTERCOURSE);
 		assertTrue(serverOutput.getOutput().contains("Successfully deregistered!!"));
+	}
+	
+	@Test
+	public void testSelectCourses(){
+		//list courses menu test
+		serverOutput = inputHandler.processInput("list courses", STUDENT);
+		assertTrue(serverOutput.getOutput().contains("Do you want to see the list of all students? (yes/no)"));
+		// testing 'list course' using menu when the student wants to see it.
+		serverOutput = inputHandler.processInput("yes", SELECTCOURSE);
+		assertTrue(serverOutput.getOutput().length() > 5);
+		// testing 'list course' using menu when the student does not wants to see it.
+		serverOutput = inputHandler.processInput("no", SELECTCOURSE);
+		assertTrue(serverOutput.getOutput().contains("Alright, have an nice day!"));
 	}
 
 }
