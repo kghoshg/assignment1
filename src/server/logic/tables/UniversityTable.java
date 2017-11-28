@@ -71,7 +71,24 @@ public class UniversityTable {
     
     public  boolean [] registerStudent(String courseCode, int studentNo){
 		boolean result[] = {false, false, false};
-		
+		for(int i=0;i<registerList.size();i++){
+			if(courseCode.equalsIgnoreCase(registerList.get(i).getCourseCode()) && (studentNo == registerList.get(i).getStudentNumber())){
+				result[2] = true;
+			}			
+		}
+		if(!CourseTable.getInstance().findByCourseByCode(courseCode)){
+			result[0] = true;
+			logger.info(String.format("Operation:New course registration;Course Info:[%s];State:Fail;Reason:Course does not exist.", courseCode));
+		}else if(!StudentTable.getInstance().lookup(studentNo)) {
+			result[1] = true;
+			logger.info(String.format("Operation:New course registration;Student Info:[%s];State:Fail;Reason: Student does not exist.", studentNo));
+		}else if (result[2]) {
+			logger.info(String.format("Operation:New course registration;Student Info:[%s,%s];State:Fail;Reason:Already registered.", courseCode,studentNo));
+		}else{
+			University newregistration=new University(courseCode,studentNo, new Date());
+			registerList.add(newregistration);
+			logger.info(String.format("Operation:New course registration;Student and Course Info:[%s,%s];State:Success", courseCode,studentNo));
+		}
 		return result;	
     }
     

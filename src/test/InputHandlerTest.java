@@ -243,8 +243,8 @@ public class InputHandlerTest {
 		serverOutput = inputHandler.processInput("CO4321,9123874", REGISTERCOURSE);
 		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist"));
 		// testing 'register course' using menu when course does exist.
-		serverOutput = inputHandler.processInput("CO5008,7654321", REGISTERCOURSE);
-		assertTrue(serverOutput.getOutput().contains("registration successful"));
+		serverOutput = inputHandler.processInput("CO6605,7654321", REGISTERCOURSE);
+		assertTrue(serverOutput.getOutput().contains("registration successful!"));
 	}
 	
 	@Test
@@ -288,11 +288,11 @@ public class InputHandlerTest {
 	@Test
 	public void testRegisterStudent(){
 		//register student menu test
-		serverOutput = inputHandler.processInput("register student", STUDENT);
+		serverOutput = inputHandler.processInput("register student", CLERK);
 		assertTrue(serverOutput.getOutput().contains("Please Input course code and student number:'course code, student number'"));
 		// testing 'register student' using menu when course does not exist.
-		serverOutput = inputHandler.processInput("CO4321,9123874", REGISTERSTUDENT);
-		assertTrue(serverOutput.getOutput().contains("The Course Does Not Exist"));
+		serverOutput = inputHandler.processInput("COxxxx,9123874", REGISTERSTUDENT);
+		assertTrue(serverOutput.getOutput().contains("course does not exist"));
 		// testing 'register student' using menu when course does exist.
 		serverOutput = inputHandler.processInput("CO5008,7654321", REGISTERSTUDENT);
 		assertTrue(serverOutput.getOutput().contains("registration successful"));
