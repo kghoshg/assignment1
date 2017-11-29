@@ -92,7 +92,7 @@ public class InputHandler {
             	oo.setOutput(output);
 	            oo.setState(state);
             }else if (input.equalsIgnoreCase("list courses")) {
-            	output = "Do you want to see the list of all students? (yes/no)";
+            	output = "Do you want to see the list of all courses? (yes/no)";
             	state=LISTCOURSES;
             	oo.setOutput(output);
 	            oo.setState(state);

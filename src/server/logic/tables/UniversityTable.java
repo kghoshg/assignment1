@@ -26,7 +26,7 @@ public class UniversityTable {
     	registerList.add(register);
     	registerList.add(register1);
     	registerList.add(register2);
-    	logger.info(String.format("Operation:Initialize UniversityTable;UniversityTable: %s", registerList));
+    	logger.info(String.format("Operation:Initialize UniversityTable;UniversityTable: %s\n", registerList));
     };
     
     public List<University> getRegInfo(){
@@ -80,16 +80,16 @@ public class UniversityTable {
 		}
 		if(!CourseTable.getInstance().findByCourseByCode(courseCode)){
 			result[0] = true;
-			logger.info(String.format("Operation:New course registration;Course Info:[%s];State:Fail;Reason:Course does not exist.", courseCode));
+			logger.info(String.format("Scenario-: clerk registers a student =====>> [%s];State:Fail;Reason:Course does not exist.\n", courseCode));
 		}else if(!StudentTable.getInstance().lookup(studentNo)) {
 			result[1] = true;
-			logger.info(String.format("Operation:New course registration;Student Info:[%s];State:Fail;Reason: Student does not exist.", studentNo));
+			logger.info(String.format("Scenario-: clerk registers a student =====>> [%s];State:Fail;Reason: Student does not exist.\n", studentNo));
 		}else if (result[2]) {
-			logger.info(String.format("Operation:New course registration;Student Info:[%s,%s];State:Fail;Reason:Already registered.", courseCode,studentNo));
+			logger.info(String.format("Scenario-: clerk registers a student =====>> [%s,%s];State:Fail;Reason:Already registered.\n", courseCode,studentNo));
 		}else{
 			University newregistration=new University(courseCode,studentNo, new Date());
 			registerList.add(newregistration);
-			logger.info(String.format("Operation:New course registration;Student and Course Info:[%s,%s];State:Success", courseCode,studentNo));
+			logger.info(String.format("Scenario-: clerk registers a student =====>> [%s,%s];State:Success\n", courseCode,studentNo));
 		}
 		return result;	
     }
@@ -103,9 +103,9 @@ public class UniversityTable {
 			}			
 		}
 		if(result){
-			logger.info(String.format("Operation:Course cancellation;Course info:[%s];State:Success", courseCode));
+			logger.info(String.format("Scenario-: clerk cancels a course =====>> [%s];State:Success\n", courseCode));
 		}else{
-			logger.info(String.format("Operation:Course cancellation;Course info:[%s];State:Failure", courseCode));
+			logger.info(String.format("Scenario-: clerk cancels a course =====>> [%s];State:Failure\n", courseCode));
 		}
     	return result;
     }

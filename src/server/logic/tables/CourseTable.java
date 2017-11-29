@@ -21,7 +21,7 @@ public class CourseTable {
     		Course course=new Course(false, 2, 3, true, 50, courseNameList[i],courseCodeList[i]);
     		courseList.add(course);
 		}
-    	logger.info(String.format("Operation:Initialize CourseTable;CourseTable: %s", courseList));
+    	logger.info(String.format("Operation:Initialize CourseTable;CourseTable: %s\n", courseList));
     };
     public static final CourseTable getInstance() {
         return CourseListHolder.INSTANCE;
@@ -34,12 +34,12 @@ public class CourseTable {
 		for(int i=0;i<courseList.size();i++){
 			if(courseList.get(i).getCourseCode().equalsIgnoreCase(courseCode)){
 				found=true;
-				logger.info(String.format("Operation:Finding Course;Course Info:[%s,%s];State:Success", courseList.get(i).getCourseCode(),courseList.get(i).getTitle()));
+				logger.info(String.format("Operation:Finding Course;Course Info:[%s,%s];State:Success\n", courseList.get(i).getCourseCode(),courseList.get(i).getTitle()));
 			}
 		}
 		
 		if(!found){
-			logger.info(String.format("Operation:There is no course with :[%s]", courseCode));
+			logger.info(String.format("Operation:There is no course with :[%s]\n", courseCode));
 		}
 		
 		return found;
@@ -52,10 +52,10 @@ public class CourseTable {
 		if(!flag){
 			Course newCourse = new Course(courseList.size(), name, code);
 			result=courseList.add(newCourse);
-			logger.info(String.format("Operation:Create New Course;Course Info:[%s,%s];State:Success", name,code));
+			logger.info(String.format("Scenario: clerk creates course =====>>  [%s,%s];State:Success\n", name,code));
 		}else{
 			result=false;
-			logger.info(String.format("Operation:Create New Course;Course Info:[%s,%s];State:Fail;Reason:The Course already existed.", name,code));
+			logger.info(String.format("Scenario: clerk creates course =====>>  [%s,%s];State:Fail;Reason:The Course already existed.\n", name,code));
 		}
 		return result;	
 	}
@@ -65,7 +65,7 @@ public class CourseTable {
 		for (Course course : courseList) {
 			output += course.getTitle() + " (" + course.getCourseCode() + ")\n\n";
 		}
-		logger.info(String.format("List all existing courses"));
+		logger.info(String.format("Scenario-: clerk list courses =====>> List all existing courses\n"));
 		return output;
 	}
     
@@ -75,7 +75,7 @@ public class CourseTable {
 		for(int j=0;j<courseList.size();j++){
 			if(courseList.get(j).getCourseCode().equalsIgnoreCase(courseCode)){
 				result = true;
-				logger.info(String.format("Operation:Delete Course;Course Info:[%s];State:successfully deleted.", courseCode));
+				logger.info(String.format("Scenario-: clerk deletes course =====>>  [%s];State:successfully deleted.\n", courseCode));
 			}
 		}
 		return result;

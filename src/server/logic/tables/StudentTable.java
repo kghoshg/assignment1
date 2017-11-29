@@ -30,7 +30,7 @@ public class StudentTable {
     		studentList.add(deuser);
 		}
     	registerList = UniversityTable.getInstance().getRegInfo();
-    	logger.info(String.format("Operation:Initialize StudentTable;StudentTable: %s", studentList));
+    	logger.info(String.format("Operation:Initialize StudentTable;StudentTable: %s\n", studentList));
     };
     public static final StudentTable getInstance() {
         return StudentListHolder.INSTANCE;
@@ -51,13 +51,13 @@ public class StudentTable {
 		boolean password=studentList.get(index).getPassword().equalsIgnoreCase(string2);
 		if(flag!=0 && password){
 			result=0;
-			logger.info(String.format("Operation:the student and password matched:"));
+			logger.info(String.format("Operation:the student and password matched:\n"));
 		}else if(flag==0){
 			result=2;
-			logger.info(String.format("Operation:The student does not exist"));
+			logger.info(String.format("Operation:The student does not exist\n"));
 		}else if(password==false){
 			result=1;
-			logger.info(String.format("Operation:the Password is wrong"));
+			logger.info(String.format("Operation:the Password is wrong\n"));
 		}
 		return result;
 	}
@@ -76,10 +76,10 @@ public class StudentTable {
 		if(flag==0){
 			Student newuser=new Student(studentList.size(),string,string2, 100000 + new Random().nextInt(900000),status);
 			result=studentList.add(newuser);
-			logger.info(String.format("Operation:Create New Student;Student Info:[%s,%s];State:Success", string,string2));
+			logger.info(String.format("Scenario-: clerk creates a student =====>> [%s,%s];State:Success\n", string,string2));
 		}else{
 			result=false;
-			logger.info(String.format("Operation:Create New Student;Student Info:[%s,%s];State:Fail;Reason:The User already existed.", string,string2));
+			logger.info(String.format("Scenario-: clerk creates a student =====>> [%s,%s];State:Fail;Reason:The User already existed.\n", string,string2));
 		}
 		return result;	
 	}
@@ -89,7 +89,7 @@ public class StudentTable {
 		for(int i=0;i<studentList.size();i++){
 			if(studentList.get(i).getUsername().equalsIgnoreCase(string)){
 				userid=i;
-				logger.info(String.format("Operation:the student was found:[%s,%s];State:success.", "N/A","N/A"));
+				logger.info(String.format("Operation:the student was found:[%s,%s];State:success.\n", "N/A","N/A"));
 			}
 		}
 		return userid;
@@ -101,7 +101,7 @@ public class StudentTable {
 		for(int j=0;j<studentList.size();j++){
 			if(studentList.get(j).getUserid()==i){
 				result = true;
-				logger.info(String.format("Operation:Delete Student;Student Info:[%s,%s];State:successfully deleted.", "N/A","N/A"));
+				logger.info(String.format("Scenario-: clerk deletes a student =====>>  [%s,%s];State:successfully deleted.\n", "N/A","N/A"));
 			}
 		}
 		return result;
@@ -109,7 +109,7 @@ public class StudentTable {
 	
 	public String listStudents(){
 		String output = "\n";
-		logger.info(String.format("Operation:listing students:[%s,%s].", "N/A","N/A"));
+		logger.info(String.format("Scenario-: clerk lists students =====>> [%s,%s].\n", "N/A","N/A"));
 		for (Student student: studentList) {
 			output += student.getUsername() + " (" + student.getStudentNumber()+ ")\n\n";
 		}
@@ -122,7 +122,7 @@ public class StudentTable {
 			if(courseCode.equalsIgnoreCase(registerList.get(i).getCourseCode()) && (studentNo == registerList.get(i).getStudentNumber())){
 				registerList.remove(i);
 				result= true;
-				logger.info(String.format("Operation:deregistration for course is a success:[%s,%s];State:success.", "N/A","N/A"));
+				logger.info(String.format("Scenario-: student deregisters from course =====>> [%s,%s];State:success.\n", "N/A","N/A"));
 			}			
 		}
     	return result;
@@ -134,9 +134,9 @@ public class StudentTable {
     		University newregistration=new University(courseCode,studentNo, new Date());
     		registerList.add(newregistration);
     		result = true;
-    		logger.info(String.format("Operation:Registration for course sucessful:[%s,%s];State:success.", "N/A","N/A"));
+    		logger.info(String.format("Scenario-: student registers with course =====>> [%s,%s];State:success.\n", "N/A","N/A"));
     	}catch(Exception e){
-    		logger.info(String.format("Operation:Registration for course failed:[%s,%s];State:failure.", "N/A","N/A"));
+    		logger.info(String.format("Scenario-: student registers with course =====>> Operation:Registration for course failed:[%s,%s];State:failure.\n", "N/A","N/A"));
     	}
     	return result;
     }
@@ -147,7 +147,7 @@ public class StudentTable {
 			if(courseCode.equalsIgnoreCase(registerList.get(i).getCourseCode()) && (studentNo == registerList.get(i).getStudentNumber())){
 				registerList.get(i).setStatus("DR");
 				result = true;
-				logger.info(String.format("Operation:droping course was a success:[%s,%s];State:success.", "N/A","N/A"));
+				logger.info(String.format("Scenario-: student drops a course =====>> [%s,%s];State:success.\n", "N/A","N/A"));
 			}			
 		}
     	return result;
